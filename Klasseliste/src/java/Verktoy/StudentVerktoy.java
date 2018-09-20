@@ -25,7 +25,7 @@ public class StudentVerktoy {
      
   public void skrivStudenter(PrintWriter out, Connection conn)
     { 
-        String STUDENT  = "<li><a href='StudentDetail?list_fname=%s&list_lname=%s'> %s %s</a></li>\n"; 
+        String STUDENT  = "<li><a href='StudentDetail?list_no=%s&list_fname=%s&list_lname=%s'>%s %s %s</a></li>\n"; 
          
         PreparedStatement getStudents; 
          
@@ -37,22 +37,22 @@ public class StudentVerktoy {
  
                 // Step 4: Process the ResultSet by scrolling the cursor forward via next().
                 //  For each row, retrieve the contents of the cells with getXxx(columnName).
-                out.println("The records selected are:" +"<br>");
+                out.println("Studenter i klasselisten:" +"<br>");
                 int rowCount = 0;
                 while(rset.next()) {   // Move the cursor to the next row, return false if no more row
                     try {
-                    //String listNo = rset.getString("list_no");
+                    String listNo = rset.getString("list_no");
                     String listFname = rset.getString("list_fname");
                     String listLname = rset.getString("list_lname");
-                    // out.println(rowCount +": " +snr + " , " + firstName + ", " + lastName +"<br>");
-                    out.format(STUDENT, listFname,listLname, listLname,listFname);
+                    /*out.println(listNo + " , " + listFname + ", " + listLname +"<br>");*/
+                    out.format(STUDENT,listNo, listFname,listLname, listNo, listLname,listFname);
                                       
                     ++rowCount;
-                    } catch (Exception exception) {
+                    } catch (SQLException exception) {
                         out.println("Unable to map row" + exception);
                     }
                  }  // end while
-                 out.println("Total number of records = " + rowCount);
+                 out.println("Totalt antall studenter = " + rowCount);
                  
                   //out.format(STUDENT,0,"","", -1,"new","new");
                  
@@ -83,8 +83,7 @@ public class StudentVerktoy {
                 out.println("Ikke fått opprettet NY Student " +ex);
          }
   }
-  
-  
+
 
 }// slutt 
     

@@ -41,10 +41,10 @@ public class StudentLagre extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ModulLagrer</title>");            
+            out.println("<title>Ny student</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ModulLagrer at " + "Klasseliste" + "</h1>");
+            out.println("<h1> Legg til eller oppdater en student til Klasseliste </h1>");
             
             
             String listFname; 
@@ -76,7 +76,7 @@ public class StudentLagre extends HttpServlet {
             
             conn = dbVerktoy.loggInn2(out);
             
-            if (valg.contains("Ny"))
+            if (valg.contains("Legg til"))
                    
                     studentVerktoy.newStudent(listFname, listLname, out, conn);
                     

@@ -40,11 +40,11 @@ public class HentStudenter extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>JDBC test 4</title>");            
+            out.println("<title>Klasseliste IS-109/110</title>");            
             out.println("</head>");
             
             out.println("<body>");
-            out.println("<h1>JDBC Test 4  </h1>");
+            out.println("<h1> Klasseliste  </h1>");
                  
          StudentVerktoy studentVerktoy = new StudentVerktoy();
             DBVerktoy dbVerktoy = new DBVerktoy();
