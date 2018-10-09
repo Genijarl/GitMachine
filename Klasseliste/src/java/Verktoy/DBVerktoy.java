@@ -1,9 +1,4 @@
 
-/*
- * In this version we do all that has to do with the database connection here.
- * No changes in tomee.xml or context.xml
- * New here is use of Prepared Statement 
- */
 package Verktoy;
 
 import java.sql.Connection;
@@ -15,7 +10,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 /**
  *
- * @author hallgeir
+ * @author Team Machine
  */
 public class DBVerktoy {
     Connection conn;        // Must be defined here as class variables, get their value in the login method

@@ -35,14 +35,14 @@ public class StudentSkriver {
         
         out.format(FORMs, "StudentLagre"); 
                
-        // -------------- SNR  ------------------------------ 
+        // -------------- listNo  ------------------------------ 
         out.format(DIV, "ledetekst");
         out.println("Studentnummer: "+"</div>");
         out.format(DIV,"inn");
         out.format(INP, "text", "listNo", listNo);
         out.println("</div>");
 
-        // -------------- Fornavn  ------------------------------ 
+        // -------------- listFname  ------------------------------ 
         out.format(DIV, "ledetekst");
         out.println ("Fornavn: " +"</div>");
         
@@ -51,7 +51,7 @@ public class StudentSkriver {
         out.println("</div>"); 
         
            
-        // --------------Etternavn ------------------------------- 
+        // ------------- litLname  ------------------------------- 
         out.format(DIV, "ledetekst");
         out.println ("Etternavn: " +"</div>");
         
@@ -63,9 +63,9 @@ public class StudentSkriver {
         
          out.format(DIV, "inn");
          
-        out.format(INPSUB, "Submit", "valg", "Oppdater");   // type navn ledetekst
+      /*  out.format(INPSUB, "Submit", "valg", "Oppdater");   // type navn ledetekst */
         out.format(INPSUB, "Submit","valg", "Legg til");
-        out.format(INPSUB,"Submit", "valg", "Clear");
+      /* out.format(INPSUB,"Submit", "valg", "Clear"); */
 
         out.println("</div>");
         
