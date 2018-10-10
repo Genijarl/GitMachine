@@ -5,9 +5,7 @@
         <group>
             <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/web/student.html</file>
             <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/src/java/skrivere/StudentSkriver.java</file>
-            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/src/java/Verktoy/StudentVerktoy.java</file>
-            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/web/index.html</file>
-            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/src/java/Verktoy/DBVerktoy.java</file>
+            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/src/java/Servlets/StudentLagre.java</file>
         </group>
     </open-files>
 </project-private>
