@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/web/student.html</file>
-            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/src/java/skrivere/StudentSkriver.java</file>
-            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/src/java/Servlets/StudentLagre.java</file>
+            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/src/java/controller/UploadFileController.java</file>
+            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/web/META-INF/context.xml</file>
+            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/web/upload_form.jsp</file>
         </group>
     </open-files>
 </project-private>
