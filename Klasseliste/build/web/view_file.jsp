@@ -51,13 +51,8 @@
         %>
         
         <br><br>
-        <a href="main_page.jsp">Go to Main Page...</a>        
+        <a href="index.html">Go to Main Page...</a>        
                 
-        <div style="position: relative">
-            <div style="position: fixed ; bottom: 0 ; width:100% ; text-align:center ">
-                <p><a href="https://www.youtube.com/user/TechWorld3g?sub_confirmation=1">CLICK HERE TO SUBSCRIBE</a></p>
-            </div>
-        </div>
         
     </body>
 </html>

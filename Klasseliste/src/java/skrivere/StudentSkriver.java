@@ -2,25 +2,8 @@ package skrivere;
 
 import java.io.PrintWriter;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author hallgeir
- */
 public class StudentSkriver {
     
-    /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-    
- 
  public void skrivStudentForm(int listNo, String listFname, String listLname, PrintWriter out)
     {
         
