@@ -1,4 +1,4 @@
-create schema classlist; 
+
 use classlist;
 
 create table clist (
@@ -8,9 +8,12 @@ list_lname varchar (30),
 constraint pk_clist primary key (list_no)
 );
 
-insert into clist (`list_fname`, `list_lname`)
-values ('Jarl', 'Andreassen');
-
 select * from clist;
 
-drop table clist
+create table files (
+id int(4) not null auto_increment,
+title varchar(20),
+f_file longblob not null,
+constraint files_pk primary key(id)
+);
+select * From files;
