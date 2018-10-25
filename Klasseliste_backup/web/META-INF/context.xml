@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/Klasseliste_backup">
+  <Resource allowCasualMultipartParsing="true" auth="Container" driverClassName="com.mysql.jdbc.Driver" name="jdbc/localhostDS" password="Cxwq809qa6" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/classlist" username="root">
+	</Resource>
+</Context>

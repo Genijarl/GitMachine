@@ -1,15 +1,18 @@
-<!DOCTYPE html>
 <html>
+   
     <head>
+        <link rel="stylesheet" href="index.css" type="text/css"/>
+        
         <title>Upload File</title>
     </head>
     
     <body>
+        
         <form method="post" action="uploadServlet" enctype="multipart/form-data">
             <center>
                 <table border="1" width="25%" cellpadding="5"> 
                     <thead>
-                            <th colspan="3">Last opp modul</th>
+                            <th colspan="3">Last opp ressurs</th>
                     </thead>
                     <tbody>
                         <tr>
@@ -21,11 +24,17 @@
                             <td><input type="file" name="file_uploaded" /></td>
                         </tr>
                         <tr>
-                            <td colspan="3"><center><input type="submit" value="Last opp"></center></td>
+                            <td colspan="3"><center><input type="submit" value="Last opp"> 
+                                
+                             </center></td>
+                            
                         </tr>
                     </tbody>
                 </table>
             </center>
+            
         </form>
+    <center> <form method="get" action="/Klasseliste">  
+        </form></center>
     </body>
 </html>

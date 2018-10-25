@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Verktoy.DBVerktoy;
 import Verktoy.StudentVerktoy;
-import skrivere.StudentSkriver;
 
-@WebServlet(name = "studentDetail", urlPatterns = {"/studentDetail"})
+@WebServlet(name = "StudentDetail", urlPatterns = {"/StudentDetail"})
 public class StudentDetail extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -23,29 +22,27 @@ public class StudentDetail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet studentDetail</title>");            
+            out.println("<title>Servlet StudentDetail</title>");            
             out.println("</head>");
-            out.println("<body>");
+            out.println("<body>"); 
             
-            String listNo  = request.getParameter("list_no");
-            String listFname = request.getParameter("list_fname");
+            String listFname= request.getParameter("list_fname");
             String listLname = request.getParameter("list_lname");
-            out.println("<h1>Servlet studentDetail at " + request.getContextPath() + "</h1>");
-                        
-            out.println("I StudentDetail Valgt er " +listNo + " Fornavn " + listFname +" LASTNAME "+listLname);
-                   
+           
             
+            out.println("<h1>Student detaljer</h1>");
+         
+            out.println("Fornavn " + listFname + "Etternavn " + listLname);
+                      
             
-            StudentVerktoy studentVerktoy = new StudentVerktoy();
+            StudentVerktoy StudentVerktoy = new StudentVerktoy();
             DBVerktoy dbVerktoy = new DBVerktoy();
             
             Connection conn; 
             conn = dbVerktoy.loggInn2(out);
             
-            studentVerktoy.skrivStudenter(out,conn);
-            
-           
-            
+            //Brukes denne kommer alle modulene i modul beskrivelsen
+            /*ModulVerktoy.skrivModul(out,conn);*/
                         
             out.println("</body>");
             out.println("</html>");

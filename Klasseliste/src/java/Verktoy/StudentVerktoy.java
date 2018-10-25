@@ -1,20 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Verktoy;
 
 
 import java.io.PrintWriter;
 import java.sql.*; 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
+
 /**
  *
- * @author hallgeir
+ * @author Team Machine
  */
 public class StudentVerktoy {
     Connection conn;        // Must be defined here as class variables, get their value in the login method
@@ -65,7 +57,7 @@ public class StudentVerktoy {
   
   public void newStudent(String listFname, String listLname, PrintWriter out, Connection conn) {
         PreparedStatement newStudent; 
-        out.println("Inni newStudent");
+        out.println("En ny student ble lagt til! ");
          try {
              String ins ="insert into classlist.clist ( list_fname,list_lname)  values (?, ?)";
           
@@ -85,5 +77,4 @@ public class StudentVerktoy {
   }
 
 
-}// slutt 
-    
+}

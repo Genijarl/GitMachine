@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlets;
 
 import java.io.IOException;
@@ -19,11 +14,10 @@ import skrivere.StudentSkriver;
 
 /**
  *
- * @author hallgeir
+ * @author Knut Andreas Aas
  */
 @WebServlet(name = "StudentLagre", urlPatterns = {"/StudentLagre"})
 public class StudentLagre extends HttpServlet {
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,7 +31,6 @@ public class StudentLagre extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -52,8 +45,8 @@ public class StudentLagre extends HttpServlet {
             String listNoS;
             String valg="";
               
-            
             listNoS = request.getParameter("listNo");
+            
             int listNo;
             if (listNoS ==null)
             {   listNo =0;
@@ -61,7 +54,8 @@ public class StudentLagre extends HttpServlet {
                 listLname = "etternavn";
             }
             else
-                {listNo = Integer.parseInt(listNoS);
+                {
+                listNo = Integer.parseInt(listNoS);
                 listFname = request.getParameter("listFname");
                 listLname = request.getParameter("listLname");
                 valg = request.getParameter("valg");
@@ -87,6 +81,7 @@ public class StudentLagre extends HttpServlet {
             out.println("</html>");
         }
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

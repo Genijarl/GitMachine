@@ -1,4 +1,3 @@
-
 package Verktoy;
 
 import java.sql.Connection;
@@ -13,9 +12,8 @@ import javax.sql.DataSource;
  * @author Team Machine
  */
 public class DBVerktoy {
-    Connection conn;        // Must be defined here as class variables, get their value in the login method
+    Connection conn; 
     Statement stmt;
-
     
         public Connection loggInn2(PrintWriter out) {
         try {
@@ -25,8 +23,7 @@ public class DBVerktoy {
          //DataSource ds = (DataSource)cont.lookup("jdbc/localhostDS");
          conn =  ds.getConnection();
          stmt = conn.createStatement();
-         
- 
+        
         }
         catch (SQLException ex ) {
             out.println("Not connected to database " +ex);
