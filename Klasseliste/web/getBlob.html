@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>View File</title>
+    </head>
+    <body>
+        <table border="1" width="25%" cellpadding="5">
+            <thead> 
+               <th colspan="3">Uploaded Files</th>        
+            </thead>
+                <tbody>
+                    <tr>
+                        <td><center><b>Id</b></center><td><center><b>Title</b></center></td><td><center><b>File</b></center></td>
+                    </tr>
+                    <tr>
+                                        <td><center><%out.print(rs.getString("id")); %></center></td>
+                                        <td><center><%out.print(rs.getString("title")); %></center></td>
+                                        <td><center> <form action="viewFile" method="post"> </form></center></td>
+                                    </tr>
+                                          </tbody> 
+        </table>
+        
+           <br><br>
+        <a href="index.html">Go to Main Page...</a>        
+                
+        
+    </body>
+</html>
