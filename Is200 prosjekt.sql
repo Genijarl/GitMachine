@@ -10,8 +10,8 @@ constraint pk_clist primary key (list_no)
 ); 
 
 insert into clist (`list_fname`, `list_lname`)
-values ('Knut Andreas', 'Aas'),
-('Morten Abel');
+values ('Knut Andreas', 'Aas');
+
 
 create table modulelist (
 m_id int (10), 
@@ -62,5 +62,16 @@ title varchar(20),
 f_file longblob not null,
 constraint files_pk primary key(id)
 );
+
+create table outgoingEmail (
+mottaker_id integer auto_increment,
+epost_adr varchar(50),
+epost_emne varchar(50),
+epost_kopi varchar(50),
+email_sendt datetime,
+constraint pk_outgoingEmail primary key (mottaker_id)
+);
+
+select * from outgoingEmail;
 
 select * from files;
