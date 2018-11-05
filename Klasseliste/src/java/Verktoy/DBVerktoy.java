@@ -19,7 +19,7 @@ public class DBVerktoy {
         try {
          // Step 1: Allocate a database 'Connection' object
          Context cont = new InitialContext();
-         DataSource ds = (DataSource)cont.lookup("java:comp/env/jdbc/localhostDS");  
+         DataSource ds = (DataSource)cont.lookup("java:comp/env/jdbc/classlist");  
          //DataSource ds = (DataSource)cont.lookup("jdbc/localhostDS");
          conn =  ds.getConnection();
          stmt = conn.createStatement();
