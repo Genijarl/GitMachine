@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import Verktoy.DBVerktoy;
 import Verktoy.ModulVerktoy;
 
-
 /**
  *
  * @author Knut Andreas Aas // Team Machine
@@ -36,7 +35,7 @@ public class HentModuler extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Klasseliste IS-109/110</title>");            
+            out.println("<title>LES</title>");            
             out.println("</head>");
             
             out.println("<body>");
@@ -46,10 +45,13 @@ public class HentModuler extends HttpServlet {
             DBVerktoy dbVerktoy = new DBVerktoy();
             
             Connection conn; 
-            conn = dbVerktoy.loggInn2(out);
+            conn = dbVerktoy.loggInn2();
             
             modulVerktoy.skrivModul(out,conn);
             
+            out.println("<br></br>");
+            out.println("<a href =\"moduler.html\"> Tilbake </a>");
+            out.println("<link href=\"les.css\" rel=\"stylesheet\" type=\"text/css\">");
             out.println("</body>");
             out.println("</html>");
         }

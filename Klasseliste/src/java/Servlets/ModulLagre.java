@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Verktoy.DBVerktoy;
 import Verktoy.ModulVerktoy;
+import static java.nio.charset.StandardCharsets.ISO_8859_1;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import skrivere.ModulSkriver;
 
 
@@ -35,22 +37,21 @@ public class ModulLagre extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Ny modul</title>");            
+            out.println("<title>LES</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1> Legg til eller oppdater en modul</h1>");
-            
+            out.println("<h1> Opprett en modul</h1>");
             
             String mName;
             String mDescription; 
             String mResources;
             String mAssignment;
+            String mEvaluation;
             String mIds;
             String valg="";
-            
+                       
             mIds = request.getParameter("mId");
-              
-          
+                       
             int mId;
             if (mIds == null)
             {   mId =0;
@@ -58,6 +59,7 @@ public class ModulLagre extends HttpServlet {
                 mDescription = "Beskriv modulen";
                 mResources = "Ressurser";
                 mAssignment = "Oppgavetekst";
+                mEvaluation = "Evaluering";
             }
             else
                 { 
@@ -66,25 +68,49 @@ public class ModulLagre extends HttpServlet {
                 mDescription = request.getParameter("mDescription");
                 mResources = request.getParameter("mResources");
                 mAssignment = request.getParameter("mAssignment");
+                mEvaluation = request.getParameter("mEvaluation");
                 valg = request.getParameter("valg");
+                
                 }     
-               
+            //Konverterer input, bytes til tekst  
+            byte [] ptext = mName.getBytes (ISO_8859_1);
+            String mNameFix = new String (ptext,UTF_8); 
+            
+            byte [] ptext2 = mDescription.getBytes (ISO_8859_1);
+            String mDescriptionFix = new String (ptext2,UTF_8); 
+            
+            byte [] ptext3 = mResources.getBytes (ISO_8859_1);
+            String mResourcesFix = new String (ptext3,UTF_8); 
+            
+            byte [] ptext4 = mAssignment.getBytes (ISO_8859_1);
+            String mAssignmentFix = new String (ptext4,UTF_8);
+            
+            byte [] ptext5 = mEvaluation.getBytes (ISO_8859_1);
+            String mEvaluationFix = new String (ptext5,UTF_8);
+            
+            
             ModulSkriver ModulSkriver  = new ModulSkriver(); 
             ModulVerktoy ModulVerktoy = new ModulVerktoy();  
 
             
             DBVerktoy dbVerktoy = new DBVerktoy();
-            Connection conn; 
-            
-            conn = dbVerktoy.loggInn2(out);
-            
-            if (valg.contains("Legg til"))
-                   
-                    ModulVerktoy.newModule(mId, mName, mDescription,mResources,mAssignment, out, conn);
-                    
-            ModulSkriver.skrivModul(mId, mName, mDescription, mResources, mAssignment, out); 
            
             
+            try (Connection conn = dbVerktoy.loggInn2()){
+                
+                if (valg.contains("Legg til"))
+                
+                   
+                    ModulVerktoy.newModule(mId, mNameFix, mDescriptionFix ,mResourcesFix ,mAssignmentFix, mEvaluationFix, out, conn);
+                ModulSkriver.skrivModul(mId, mName, mDescription, mResources, mAssignment,mEvaluation, out); 
+            }
+            
+            catch (Exception ex){
+                out.println("Noe gikk galt med å lagre modulen" + ex);
+            }
+     
+            out.println("<a href =\"hentModuler\"> Tilbake </a>");
+            out.println("<link href=\"les.css\" rel=\"stylesheet\" type=\"text/css\">");
             out.println("</body>");
             out.println("</html>");
         }

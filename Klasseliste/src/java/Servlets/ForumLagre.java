@@ -9,14 +9,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Verktoy.DBVerktoy;
+import Verktoy.ForumVerktoy;
+import static java.nio.charset.StandardCharsets.ISO_8859_1;
+import static java.nio.charset.StandardCharsets.UTF_8;
+import skrivere.ForumSkriver;
 
-@WebServlet(name = "ModuleDetail", urlPatterns = {"/ModuleDetail"})
-public class ModulDetailjer extends HttpServlet {
 
+/**
+ *
+ * @author Knut Andreas Aas
+ */
+@WebServlet(name = "ForumLagre", urlPatterns = {"/ForumLagre"})
+public class ForumLagre extends HttpServlet {
+    
+    
+    /**Jeg valgte å gjøre det sånn fordi...*/
+    
+    /**
+     * 
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -24,41 +42,61 @@ public class ModulDetailjer extends HttpServlet {
             out.println("<title>LES</title>");            
             out.println("</head>");
             out.println("<body>");
+            out.println("<h2> Publiser et innlegg </h2>");
             
-            String mName  = request.getParameter("m_name");
-            String mDescription = request.getParameter("m_description");
-            String mResources = request.getParameter("m_resources");
-            String mAssignment = request.getParameter("m_assignment");
-            String mEvaluation = request.getParameter("m_evaluation");
+            String fTitle;
+            String fContent;
+            String fIds;
+            String valg="";
+                       
+            fIds = request.getParameter("fId");
+                       
+            int fId;
+            if (fIds == null)
+            {   fId =0;
+                fTitle = "Tittel på innlegg";
+                fContent = "Still et spørmål";  
+            }
+            else
+                { 
+                fId = Integer.parseInt(fIds);
+                fTitle = request.getParameter("fTitle");
+                fContent = request.getParameter("fContent");
+                valg = request.getParameter("valg"); 
+                }   
             
-            out.println("<h1>Modul detaljer</h1>");
-            out.println(mName);
-            out.print("<br></br>");
-            out.println("Beskrivelse: " + ("<br></br>") + mDescription);
-            out.print("<br></br>");
-            out.println("Ressurser: " +("<br></br>")+ mResources);
-            out.print("<br></br>");
-            out.println("Oppgave: " + ("<br></br>") +mAssignment);
-            out.print("<br></br>");
-            out.println("Evaluering: " + ("<br></br>") +mEvaluation);
-                      
+            //Konverterer bytes til tekst  
+            byte [] ptext = fTitle.getBytes (ISO_8859_1);
+            String fTitleFix = new String (ptext,UTF_8); 
             
-           // ModulVerktoy modulVerktoy = new ModulVerktoy();
+            byte [] ptext2 = fContent.getBytes (ISO_8859_1);
+            String fContentFix = new String (ptext2,UTF_8); 
+            
+            
+            ForumSkriver ForumSkriver  = new ForumSkriver(); 
+            ForumVerktoy ForumVerktoy = new ForumVerktoy();  
             DBVerktoy dbVerktoy = new DBVerktoy();
+           
             
-            Connection conn; 
-            conn = dbVerktoy.loggInn2();
+            try (Connection conn = dbVerktoy.loggInn2()){
+                
+                if (valg.contains("Publiser"))
+                   
+                    ForumVerktoy.NyttInnlegg(fId, fTitleFix, fContentFix, out, conn);
+                ForumSkriver.skrivForum(fId, fTitle, fContent, out);         
+            }
             
-            //Brukes denne kommer alle modulene i modul beskrivelsen
-            /*ModulVerktoy.skrivModul(out,conn);*/
-            out.println("<br></br>");            
-            out.println("<a href =\"hentModuler\"> Tilbake </a>");
+            catch (Exception ex){
+                out.println("Noe gikk galt med å poste innlegget " + ex);
+            }
+            
+            out.println("<a href =\"forum.html\"> Tilbake </a>");
             out.println("<link href=\"les.css\" rel=\"stylesheet\" type=\"text/css\">");
             out.println("</body>");
             out.println("</html>");
         }
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

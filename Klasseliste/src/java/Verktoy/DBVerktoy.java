@@ -1,7 +1,6 @@
 package Verktoy;
 
 import java.sql.Connection;
-import java.io.PrintWriter;
 import java.sql.*; 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -15,7 +14,7 @@ public class DBVerktoy {
     Connection conn; 
     Statement stmt;
     
-        public Connection loggInn2(PrintWriter out) {
+        public Connection loggInn2() {
         try {
          // Step 1: Allocate a database 'Connection' object
          Context cont = new InitialContext();
@@ -26,10 +25,10 @@ public class DBVerktoy {
         
         }
         catch (SQLException ex ) {
-            out.println("Not connected to database " +ex);
+            System.out.println("Not connected to database " +ex);
         }
         catch (NamingException nex) {
-            out.println("Not correct naming" + nex);
+            System.out.println("Not correct naming" + nex);
         }
         
        return conn; 

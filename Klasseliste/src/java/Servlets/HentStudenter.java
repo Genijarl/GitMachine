@@ -45,7 +45,7 @@ public class HentStudenter extends HttpServlet {
             DBVerktoy dbVerktoy = new DBVerktoy();
             
             Connection conn; 
-            conn = dbVerktoy.loggInn2(out);
+            conn = dbVerktoy.loggInn2();
             
             studentVerktoy.skrivStudenter(out,conn);
             

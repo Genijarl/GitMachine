@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <!-- Refererer til en CSS fil (les.css). Overskrift på siden + UFT-8 som er alfabetet vi bruker-->
+        <link rel="stylesheet" href="les.css" type="text/css"/>
+        <title>LES</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+    </head>
+    
+    <body>
+        <!--Åpne forum, vis alle innlegg som har blitt postet i forumet - knapp.-->
+        <h1> Forum </h1>
+        <form action="hentForum" method="post">
+            <input type="Submit" name="hent" value="Se forum">             
+        </form> 
+        
+        <!--Skriv et nytt innlegg knapp--> 
+        <h1>Skriv et innlegg</h1>
+        <form action="ForumLagre" method="post"> <br>
+            <input type="Submit" name="lagre" value="Opprett innlegg">      
+        </form>  
+            
+        <!--Tilbakeknapp fra forum.html til forside (LES)--> 
+        <form action="\LES" method="post"> <br>
+            <input type="submit" value="Tilbake" />
+        </form>
+        
+    </body>
+</html>

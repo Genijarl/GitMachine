@@ -39,7 +39,7 @@ public class StudentDetail extends HttpServlet {
             DBVerktoy dbVerktoy = new DBVerktoy();
             
             Connection conn; 
-            conn = dbVerktoy.loggInn2(out);
+            conn = dbVerktoy.loggInn2();
             
             //Brukes denne kommer alle modulene i modul beskrivelsen
             /*ModulVerktoy.skrivModul(out,conn);*/

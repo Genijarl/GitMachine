@@ -68,7 +68,7 @@ public class StudentLagre extends HttpServlet {
             DBVerktoy dbVerktoy = new DBVerktoy();
             Connection conn; 
             
-            conn = dbVerktoy.loggInn2(out);
+            conn = dbVerktoy.loggInn2();
             
             if (valg.contains("Legg til"))
                    

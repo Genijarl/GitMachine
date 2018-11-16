@@ -19,7 +19,7 @@ public class StudentVerktoy {
     { 
         String STUDENT  = "<li><a href='StudentDetail?list_no=%s&list_fname=%s&list_lname=%s'>%s %s %s</a></li>\n"; 
          
-        PreparedStatement getStudents; 
+        PreparedStatement getStudents;
          
          try {
                 getStudents = conn.prepareStatement("select * from clist");
@@ -76,5 +76,21 @@ public class StudentVerktoy {
          }
   }
 
-
+  public void deleteStudent(String listFname, String listLname, PrintWriter out, Connection conn) {
+      PreparedStatement deleteStudent;
+      out.println("Studenten ble slettet!");
+      try {
+          String ins = "DELETE FROM classlist.clist WHERE ( list_fname, list_lname) = (?, ?)";
+          
+          deleteStudent = conn.prepareStatement(ins);
+          
+           deleteStudent.setString(1,listFname);             
+           deleteStudent.setString(2,listLname);  
+           
+           deleteStudent.executeUpdate();
+           
+  } catch(SQLException ex) {
+          out.println("Sletting av student feilet " + ex);
+          }
+}
 }

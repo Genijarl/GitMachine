@@ -9,50 +9,44 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Verktoy.DBVerktoy;
+import Verktoy.ForumVerktoy;
 
-@WebServlet(name = "ModuleDetail", urlPatterns = {"/ModuleDetail"})
-public class ModulDetailjer extends HttpServlet {
+/**
+ * @author Knut Andreas Aas // Team Machine
+ */
+@WebServlet(name = "hentForum", urlPatterns = {"/hentForum"})
+public class HentForum extends HttpServlet {
 
+   /**
+    * @param request
+    * @param response
+    * @throws ServletException
+    * @throws IOException 
+    */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>LES</title>");            
             out.println("</head>");
+            
             out.println("<body>");
-            
-            String mName  = request.getParameter("m_name");
-            String mDescription = request.getParameter("m_description");
-            String mResources = request.getParameter("m_resources");
-            String mAssignment = request.getParameter("m_assignment");
-            String mEvaluation = request.getParameter("m_evaluation");
-            
-            out.println("<h1>Modul detaljer</h1>");
-            out.println(mName);
-            out.print("<br></br>");
-            out.println("Beskrivelse: " + ("<br></br>") + mDescription);
-            out.print("<br></br>");
-            out.println("Ressurser: " +("<br></br>")+ mResources);
-            out.print("<br></br>");
-            out.println("Oppgave: " + ("<br></br>") +mAssignment);
-            out.print("<br></br>");
-            out.println("Evaluering: " + ("<br></br>") +mEvaluation);
-                      
-            
-           // ModulVerktoy modulVerktoy = new ModulVerktoy();
+            out.println("<h1> Forum </h1>");
+                 
+            ForumVerktoy ForumVerktoy = new ForumVerktoy();
             DBVerktoy dbVerktoy = new DBVerktoy();
             
             Connection conn; 
             conn = dbVerktoy.loggInn2();
             
-            //Brukes denne kommer alle modulene i modul beskrivelsen
-            /*ModulVerktoy.skrivModul(out,conn);*/
-            out.println("<br></br>");            
-            out.println("<a href =\"hentModuler\"> Tilbake </a>");
+            ForumVerktoy.skrivForum(out,conn);
+            
+            out.println("<br></br>");
+            out.println("<a href =\"forum.html\"> Tilbake </a>");
             out.println("<link href=\"les.css\" rel=\"stylesheet\" type=\"text/css\">");
             out.println("</body>");
             out.println("</html>");

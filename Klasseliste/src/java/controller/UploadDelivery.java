@@ -43,7 +43,7 @@ public class UploadDelivery extends HttpServlet {
         
         DBVerktoy dbVerktoy = new DBVerktoy();
         
-        try (Connection conn = dbVerktoy.loggInn2(out)){
+        try (Connection conn = dbVerktoy.loggInn2()){
     
             String sql = "INSERT INTO files (title, f_file) values (?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);

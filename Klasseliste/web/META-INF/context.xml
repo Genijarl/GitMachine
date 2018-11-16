@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/Klasseliste">
-	<Resource name="jdbc/classlist" type="javax.sql.DataSource" auth="Container" username="root" password="Cxwq809qa6" 
-                  driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/classlist" allowCasualMultipartParsing="true"/>
-        			   
-	<Realm roleNameCol="rolename" userRoleTable="roles" userCredCol="password" userNameCol="username" userTable="users" 
-               localDataSource="true" dataSourceName="jdbc/classlist" className="org.apache.catalina.realm.DataSourceRealm"/>
+<Context path="/LES">
+  <Resource allowCasualMultipartParsing="true" auth="Container" driverClassName="com.mysql.jdbc.Driver" 
+            name="jdbc/classlist" password="Cxwq809qa6" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/classlist" username="root"/>
+  
+  <Realm className="org.apache.catalina.realm.DataSourceRealm" dataSourceName="jdbc/classlist" localDataSource="true" 
+         roleNameCol="rolename" userCredCol="password" userNameCol="username" userRoleTable="roles" userTable="users"/>
 </Context>

@@ -1,33 +1,35 @@
 <html>
     <head>
-        <link rel="stylesheet" href="index.css" type="text/css"/>
-
-        <title>Klasseliste IS-109/110</title>
+        <!-- Refererer til en CSS fil (les.css). Overskrift på siden + UFT-8 som er alfabetet vi bruker-->
+        <link rel="stylesheet" href="les.css" type="text/css"/>
+        <title>LES</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     </head>
+    
     <body>
-            <h1> Moduler </h1>
-            <div>
-            <form action="hentModuler" method="post">
-             
-                <input type="Submit" name="hent" value="Se alle moduler">   
-                          
-            </form>  
-           </div>
-           
+        <!--Knapp som fører til en liste over alle modulene (HentModuler.java)-->
+        <h1> Moduler </h1>
+        <form action="hentModuler" method="post">
+            <input type="Submit" name="hent" value="Se alle moduler">                  
+        </form>  
             
-         <div class ="form2">
-             <h1>Opprett ny modul</h1>
-             <form action="ModulLagre" method="post"> <br>
-              <!--  Student Number: <input type ="text" name ="list_no">  <br>
-                First Name: <input type ="text" name ="list_fname">  <br>
-                Last Name: <input type ="text" name ="list_lname">  <br>  -->
-
-                <input type="Submit" name="lagre" value="Ny modul">                
-            </form>  
-         </div>
-            
+        <!--Knapp som fører deg til en ny side hvor man kan opprette en ny modul (ModulLagre.java)-->
+        <h1>Legg til ny modul</h1>
+        <form action="ModulLagre" method="post"> <br>
+            <input type="Submit" name="lagre" value="Opprett modul">                
+        </form>  
+        
+        <!--Knapp som fører deg til en ny side hvor man kan fjerne en modul (ModulSlett.java)-->  
+        <h1>Fjern en modul</h1>
+        <form action="ModulSlett" method="post"> <br>
+            <input type="Submit" name="slett" value="Fjern modul">          
+        </form>  
+    
+        <!--Tilbakeknapp fra moduler.html til forside (LES)--> 
+        <form action="\LES" method="post"> <br>
+            <input type="submit" value="Tilbake" />
+        </form>
+       
     </body>
 </html>
