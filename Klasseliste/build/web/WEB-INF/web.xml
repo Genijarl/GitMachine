@@ -37,8 +37,7 @@
 <!-- to access these pages -->
 <web-resource-collection>
 <web-resource-name>UserResources</web-resource-name>
-<url-pattern>/ShowContact</url-pattern>
-<url-pattern>/ShowList</url-pattern>
+<url-pattern>/Student.jsp</url-pattern>
 </web-resource-collection>
 <!-- the user must have one of these roles -->
 <auth-constraint>
@@ -49,9 +48,7 @@
 <security-constraint>
 <web-resource-collection>
 <web-resource-name>AdminResources</web-resource-name>
-<url-pattern>/ModulLagre</url-pattern>
-<url-pattern>/StudentLagre</url-pattern>
-<url-pattern>/studentSlett</url-pattern>
+<url-pattern>/Foreleser.jsp</url-pattern>
 </web-resource-collection>
 <auth-constraint>
 <role-name>RolodexAdmin</role-name>
@@ -70,6 +67,6 @@
 <realm-name>DataSourceRealm</realm-name>
 </login-config>
 <welcome-file-list>
-<welcome-file>index.html</welcome-file>
+<welcome-file>Home.jsp</welcome-file>
 </welcome-file-list>
 </web-app>

@@ -8,10 +8,10 @@
                 </head>
         <body>
                 <div>
-                        <a href ="Foreleser.jsp"> Hjem </a>
-                        <a href ="utboks.jsp"> Sendt </a> 
-                        <a href ="innboks.jsp"> Innboks </a>
-                        <a href="ePost.jsp"> Ny Epost </a>
+                        <a href ="student.html"> Studenter </a>
+                        <a href ="moduler.html"> Moduler </a>
+                        <a href ="mail.html"> Epost </a>
+                        <a href ="forum.html"> Forum </a>
                 </div> 
         </body>
 </html> 

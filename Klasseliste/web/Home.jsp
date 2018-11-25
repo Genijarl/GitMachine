@@ -8,12 +8,9 @@
                 </head>
         <body>
                 <div>
-                        <a href ="student.html"> Studenter </a>
-                        <a href ="moduler.html"> Moduler </a>
-                        <a href ="mail.html"> Epost </a>
-                        <a href ="forum.html"> Forum </a>
-                        <a href ="uploader.html"> Last opp ressurs </a> 
-                        <a href ="getFile.jsp"> Se opplastede filer </a>
+                        <a href ="Student.jsp"> Student </a>
+                        <a href ="Foreleser.jsp"> Foreleser </a>
+              
                 </div> 
         </body>
 </html> 

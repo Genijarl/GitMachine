@@ -8,7 +8,7 @@
                 </head>
         <body>
                 <div>
-                        <a href ="Foreleser.jsp"> Hjem </a>
+                        <a href ="Student.jsp"> Hjem </a>
                         <a href ="utboks.jsp"> Sendt </a> 
                         <a href ="innboks.jsp"> Innboks </a>
                         <a href="ePost.jsp"> Ny Epost </a>

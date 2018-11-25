@@ -99,7 +99,7 @@
             public class Epost {
                 String URL = "jdbc:mysql://localhost:3306/classlist";
                 String USERNAME = "root";
-                String PASSWORD = "Cxwq809qa6";
+                String PASSWORD = "root";
 
 
                 Connection connection = null;
