@@ -16,6 +16,12 @@ import Verktoy.DBVerktoy;
 @WebServlet(name = "ForumDetail", urlPatterns = {"/ForumDetail"})
 public class ForumDetail extends HttpServlet {
     
+    /**
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -41,14 +47,11 @@ public class ForumDetail extends HttpServlet {
             out.print("<br></br>");
            
             DBVerktoy dbVerktoy = new DBVerktoy();
-            
             Connection conn; 
             conn = dbVerktoy.loggInn2();
             
-            //Brukes denne kommer alle modulene i modul beskrivelsen
-            /*ModulVerktoy.skrivModul(out,conn);*/
             out.println("<br></br>");    
-            out.println("<a href =\"hentForum\"> Tilbake </a>");
+            //out.println("<a href =\"hentForum\"> Tilbake </a>");
             out.println("<link href=\"les.css\" rel=\"stylesheet\" type=\"text/css\">");
             out.println("</body>");
             out.println("</html>");

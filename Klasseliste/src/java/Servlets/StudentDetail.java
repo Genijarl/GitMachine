@@ -8,15 +8,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+/**
+ * @author Jarl Andreassen, Sondre Lømsland & Knut Andreas Aas // Team Machine
+ */
 @WebServlet(name = "StudentDetail", urlPatterns = {"/StudentDetail"})
 public class StudentDetail extends HttpServlet {
-
+    
+    /**
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -27,7 +34,6 @@ public class StudentDetail extends HttpServlet {
             String listFname= request.getParameter("list_fname");
             String listLname = request.getParameter("list_lname");
            
-            
             out.println("<h1>Student detaljer</h1>");
          
             out.println("Fornavn: " + listFname);
@@ -37,7 +43,7 @@ public class StudentDetail extends HttpServlet {
             out.println("Fag: IS-109");
             out.println("<br></br>");
                       
-            out.println("<a href =\"hentStudenter\"> Tilbake </a>");
+            //out.println("<a href =\"hentStudenter\"> Tilbake </a>");
             out.println("</body>");
             out.println("</html>");
         }

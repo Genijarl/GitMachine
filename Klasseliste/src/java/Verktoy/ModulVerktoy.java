@@ -1,18 +1,20 @@
 package Verktoy;
 
-
 import java.io.PrintWriter;
 import java.sql.*; 
 
 /**
  * @author Knut Andreas Aas // Team Machine
  */
-
 public class ModulVerktoy {
     Connection conn;
     Statement stmt;
     PreparedStatement insertModul; 
-     
+  
+  /**
+   * @param out
+   * @param conn 
+   */  
   public void skrivModul(PrintWriter out, Connection conn)
     { 
         String MODULE  = "<li><a href='ModuleDetail?m_id=%s&m_name=%s&m_description=%s&m_resources=%s&m_assignment=%s&m_evaluation=%s'> %s</a></li>\n"; 
@@ -21,16 +23,13 @@ public class ModulVerktoy {
          
          try {
                 getModules = conn.prepareStatement("select * from modulelist");
-               /* getModules.setString(1,"mName");*/
                 
                 ResultSet rset = getModules.executeQuery();
- 
-                // Step 4: Process the ResultSet by scrolling the cursor forward via next().
-                //  For each row, retrieve the contents of the cells with getXxx(columnName).
+
                 out.println("Moduler:" +"<br>");
                 
                 int rowCount = 0;
-                while(rset.next()) {   // Move the cursor to the next row, return false if no more row
+                while(rset.next()) {
                     try {
                         String mId = rset.getString("m_id");
                         String mName = rset.getString("m_name");
@@ -51,8 +50,17 @@ public class ModulVerktoy {
                 out.println("Ikke hentet fra database " +ex);
          }
    }
-
   
+  /**
+   * @param mId
+   * @param mName
+   * @param mDescription
+   * @param mResources
+   * @param mAssignment
+   * @param mEvaluation
+   * @param out
+   * @param conn 
+   */
   public void newModule(int mId, String mName,String mDescription,String mResources,String mAssignment,String mEvaluation, PrintWriter out, Connection conn) {
         PreparedStatement newModule; 
         out.println("En ny modul har blitt lagt til!");
@@ -68,11 +76,10 @@ public class ModulVerktoy {
              newModule.setString(4,mAssignment);
              newModule.setString(5,mEvaluation);
              
-             newModule.executeUpdate();
-             
-      } // end try     
-         catch (SQLException ex) {
-                out.println("Can`t create new module " +ex);
-         }
+             newModule.executeUpdate();      
+        }    
+        catch (SQLException ex) {
+               out.println("Can`t create new module " +ex);
+        }
   }
 }

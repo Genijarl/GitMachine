@@ -3,16 +3,20 @@ package skrivere;
 import java.io.PrintWriter;
 
 /**
- * @author Jarl Andreassen // Team Machine
+ * @author Jarl Andreassen & Sondre Lømsland // Team Machine
  */
 public class StudentSkriver {
-    
+  
+ /**     
+  * @param listNo
+  * @param listFname
+  * @param listLname
+  * @param out 
+  */   
  public void skrivStudentForm(int listNo, String listFname, String listLname, PrintWriter out)
     {
         
         skrivHtmlHeader(out, "");
-        /*out.println("<h1> Student </h1>");*/
-        /*out.println("<h1> En Student </h1>");*/
         
         String DIV ="<div class = '%s'>";
         String FORMs  = "<form action = '%s'  method = POST>";  
@@ -24,7 +28,7 @@ public class StudentSkriver {
         // -------------- listNo  ------------------------------ 
         out.format(DIV, "ledetekst");
         out.format(DIV,"inn");
-        //Sjekk dette (hidden funker!) Ingen vits i at brukeren kan skrive inn dette (auto increment)
+        //Ingen vits i at brukeren kan skrive inn dette (auto increment)
         out.format(INP, "hidden", "listNo", listNo);
         out.println("</div>");
 
@@ -36,7 +40,6 @@ public class StudentSkriver {
         out.format(INP, "text", "listFname", listFname);
         out.println("</div>"); 
         
-           
         // ------------- listLname  ------------------------------- 
         out.format(DIV, "ledetekst");
         out.println ("Etternavn: " +"</div>");
@@ -46,15 +49,10 @@ public class StudentSkriver {
         out.println("</div>"); 
         
         // -------------- Operatorer -------------------------------
-        
-         out.format(DIV, "inn");
-         
-        /*out.format(INPSUB, "Submit", "valg", "Fjern");   */
+        out.format(DIV, "inn");
         out.format(INPSUB, "Submit","valg", "Legg til");
-      /* out.format(INPSUB,"Submit", "valg", "Clear"); */
 
         out.println("</div>");
-        
         out.println(" <br>");        
         out.println("</form>");  
         out.println("");  
@@ -63,11 +61,8 @@ public class StudentSkriver {
  
   public void slettStudentForm(int listNo, String listFname, String listLname, PrintWriter out)
     {
-        
         skrivHtmlHeader(out, "");
-        /*out.println("<h1> Student </h1>");*/
-        /*out.println("<h1> En Student </h1>");*/
-        
+
         String DIV ="<div class = '%s'>";
         String FORMs  = "<form action = '%s'  method = POST>";  
         String INP = "<input type='%s' & name='%s' & value='%s'>" +"<br>"; 
@@ -89,7 +84,6 @@ public class StudentSkriver {
         out.format(DIV, "inn");
         out.format(INP, "text", "listFname", listFname);
         out.println("</div>"); 
-        
            
         // ------------- listLname  ------------------------------- 
         out.format(DIV, "ledetekst");
@@ -99,16 +93,11 @@ public class StudentSkriver {
         out.format(INP, "text", "listLname", listLname);
         out.println("</div>"); 
         
-        // -------------- Operatorer -------------------------------
-        
-         out.format(DIV, "inn");
-         
+        // -------------- Operatorer ------------------------------- 
+        out.format(DIV, "inn");
         out.format(INPSUB, "Submit", "valg", "Fjern");   
-       /* out.format(INPSUB, "Submit","valg", "Legg til"); */
-      /* out.format(INPSUB,"Submit", "valg", "Clear"); */
 
         out.println("</div>");
-        
         out.println(" <br>");        
         out.println("</form>");  
         out.println("");  

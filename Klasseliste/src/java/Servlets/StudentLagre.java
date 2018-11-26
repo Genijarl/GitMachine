@@ -37,7 +37,6 @@ public class StudentLagre extends HttpServlet {
             out.println("<body>");
             out.println("<h1> Legg til eller oppdater en student til Klasseliste </h1>");
             
-            
             String listFname; 
             String listLname; 
             String listNoS;
@@ -52,16 +51,14 @@ public class StudentLagre extends HttpServlet {
                 listLname = "etternavn";
             }
             else
-                {
-                listNo = Integer.parseInt(listNoS);
+            {   listNo = Integer.parseInt(listNoS);
                 listFname = request.getParameter("listFname");
                 listLname = request.getParameter("listLname");
                 valg = request.getParameter("valg");
-                }     
+            }     
                
             StudentSkriver studentSkriver  = new StudentSkriver(); 
             StudentVerktoy studentVerktoy = new StudentVerktoy();  
-
             
             DBVerktoy dbVerktoy = new DBVerktoy();
             Connection conn; 
@@ -74,7 +71,7 @@ public class StudentLagre extends HttpServlet {
                     
             studentSkriver.skrivStudentForm(listNo, listFname, listLname, out); 
            
-            out.println("<a href =\"student.html\"> Tilbake </a>");
+            //out.println("<a href =\"student.html\"> Tilbake </a>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -121,4 +118,3 @@ public class StudentLagre extends HttpServlet {
     }// </editor-fold>
 
 }
-

@@ -14,20 +14,17 @@ import static java.nio.charset.StandardCharsets.ISO_8859_1;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import skrivere.ModulSkriver;
 
-
 /**
  * @author Knut Andreas Aas // Team Machine
  */
 @WebServlet(name = "ModulLagre", urlPatterns = {"/ModulLagre"})
 public class ModulLagre extends HttpServlet {
+    
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -61,17 +58,16 @@ public class ModulLagre extends HttpServlet {
                 mEvaluation = "Evaluering";
             }
             else
-                { 
-                mId = Integer.parseInt(mIds);
+            {   mId = Integer.parseInt(mIds);
                 mName = request.getParameter("mName");
                 mDescription = request.getParameter("mDescription");
                 mResources = request.getParameter("mResources");
                 mAssignment = request.getParameter("mAssignment");
                 mEvaluation = request.getParameter("mEvaluation");
                 valg = request.getParameter("valg");
-                
-                }     
-            //Konverterer input, bytes til tekst  
+            }  
+            
+            //---------------Konverterer bytes til tekst------------------------  
             byte [] ptext = mName.getBytes (ISO_8859_1);
             String mNameFix = new String (ptext,UTF_8); 
             
@@ -86,20 +82,17 @@ public class ModulLagre extends HttpServlet {
             
             byte [] ptext5 = mEvaluation.getBytes (ISO_8859_1);
             String mEvaluationFix = new String (ptext5,UTF_8);
+            //------------------------------------------------------------------
             
-            
+            //---------------Skrivere & Verktøy--------------------------------- 
             ModulSkriver ModulSkriver  = new ModulSkriver(); 
             ModulVerktoy ModulVerktoy = new ModulVerktoy();  
-
-            
             DBVerktoy dbVerktoy = new DBVerktoy();
-           
+            //------------------------------------------------------------------
             
             try (Connection conn = dbVerktoy.loggInn2()){
                 
                 if (valg.contains("Legg til"))
-                
-                   
                     ModulVerktoy.newModule(mId, mNameFix, mDescriptionFix ,mResourcesFix ,mAssignmentFix, mEvaluationFix, out, conn);
                 ModulSkriver.skrivModul(mId, mName, mDescription, mResources, mAssignment,mEvaluation, out); 
             }
@@ -108,7 +101,7 @@ public class ModulLagre extends HttpServlet {
                 out.println("Noe gikk galt med å lagre modulen" + ex);
             }
      
-            out.println("<a href =\"hentModuler\"> Tilbake </a>");
+            //out.println("<a href =\"hentModuler\"> Tilbake </a>");
             out.println("<link href=\"les.css\" rel=\"stylesheet\" type=\"text/css\">");
             out.println("</body>");
             out.println("</html>");

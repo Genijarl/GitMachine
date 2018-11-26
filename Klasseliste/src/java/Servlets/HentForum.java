@@ -45,7 +45,7 @@ public class HentForum extends HttpServlet {
             ForumVerktoy.skrivForum(out,conn);
             
             out.println("<br></br>");
-            out.println("<a href =\"forum.html\"> Tilbake </a>");
+            //out.println("<a href =\"forum.html\"> Tilbake </a>");
             out.println("<link href=\"les.css\" rel=\"stylesheet\" type=\"text/css\">");
             out.println("</body>");
             out.println("</html>");

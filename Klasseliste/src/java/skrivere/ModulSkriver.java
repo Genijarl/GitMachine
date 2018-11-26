@@ -6,7 +6,16 @@ import java.io.PrintWriter;
  * @author Knut Andreas Aas // Team Machine
  */
     public class ModulSkriver {
-    
+        
+    /**
+     * @param mId
+     * @param mName
+     * @param mDescription
+     * @param mResources
+     * @param mAssignment
+     * @param mEvaluation
+     * @param out 
+     */
     public void skrivModul(int mId, String mName, String mDescription, String mResources, String mAssignment, String mEvaluation, PrintWriter out) {
         
         skrivHtmlHeader(out, "");
@@ -21,7 +30,7 @@ import java.io.PrintWriter;
         // -------------- mId  ------------------------------ 
         out.format(DIV, "ledetekst");
         out.format(DIV,"inn");
-        //Sjekk dette (hidden funker!) Ingen vits i at brukeren kan skrive inn dette
+        //Ingen vits i at brukeren kan skrive inn dette
         //Bruker auto increment, ikke nødvendig for bruker å kunne prøve å fylle inn noe her
         out.format(INP, "hidden", "mId", mId);
         out.println("</div>");
@@ -67,9 +76,7 @@ import java.io.PrintWriter;
         out.println("</div>"); 
         
         // -------------- Operatorer -------------------------------
-        
         out.format(DIV, "inn");
-         
         out.format(INPSUB, "Submit","valg", "Legg til");
 
         out.println("</div>");
@@ -79,6 +86,10 @@ import java.io.PrintWriter;
         out.println("</div>");  
     }
     
+    /**
+     * @param out
+     * @param tittel 
+     */
     public void skrivHtmlHeader(PrintWriter out,  String tittel)
  {
         out.println("<!DOCTYPE html>");
@@ -90,6 +101,14 @@ import java.io.PrintWriter;
         out.println("</head>");
  }
 
+    /**
+     * @param mName
+     * @param mDescription
+     * @param mResources
+     * @param mAssignment
+     * @param mEvaluation
+     * @param out 
+     */
     public void skrivModul(String mName, String mDescription, String mResources, String mAssignment, String mEvaluation, PrintWriter out) {
         throw new UnsupportedOperationException("Not supported yet.");
     }

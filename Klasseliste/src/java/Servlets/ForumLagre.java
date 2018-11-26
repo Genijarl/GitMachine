@@ -14,13 +14,18 @@ import static java.nio.charset.StandardCharsets.ISO_8859_1;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import skrivere.ForumSkriver;
 
-
 /**
  * @author Knut Andreas Aas // Team Machine
  */
 @WebServlet(name = "ForumLagre", urlPatterns = {"/ForumLagre"})
 public class ForumLagre extends HttpServlet {
     
+    /**
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -47,30 +52,30 @@ public class ForumLagre extends HttpServlet {
                 fContent = "Still et spørmål";  
             }
             else
-                { 
+            { 
                 fId = Integer.parseInt(fIds);
                 fTitle = request.getParameter("fTitle");
                 fContent = request.getParameter("fContent");
                 valg = request.getParameter("valg"); 
-                }   
+            }   
             
-            //Konverterer bytes til tekst  
+            //---------------Konverterer bytes til tekst------------------------
             byte [] ptext = fTitle.getBytes (ISO_8859_1);
             String fTitleFix = new String (ptext,UTF_8); 
             
             byte [] ptext2 = fContent.getBytes (ISO_8859_1);
             String fContentFix = new String (ptext2,UTF_8); 
+            //------------------------------------------------------------------
             
-            
+            //---------------Skrivere & Verktøy--------------------------------- 
             ForumSkriver ForumSkriver  = new ForumSkriver(); 
             ForumVerktoy ForumVerktoy = new ForumVerktoy();  
             DBVerktoy dbVerktoy = new DBVerktoy();
+            //------------------------------------------------------------------
            
-            
             try (Connection conn = dbVerktoy.loggInn2()){
                 
                 if (valg.contains("Publiser"))
-                   
                     ForumVerktoy.NyttInnlegg(fId, fTitleFix, fContentFix, out, conn);
                 ForumSkriver.skrivForum(fId, fTitle, fContent, out);         
             }
@@ -79,7 +84,7 @@ public class ForumLagre extends HttpServlet {
                 out.println("Noe gikk galt med å poste innlegget " + ex);
             }
             
-            out.println("<a href =\"forum.html\"> Tilbake </a>");
+            //out.println("<a href =\"forum.html\"> Tilbake </a>");
             out.println("<link href=\"les.css\" rel=\"stylesheet\" type=\"text/css\">");
             out.println("</body>");
             out.println("</html>");

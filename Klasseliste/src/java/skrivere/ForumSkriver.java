@@ -27,7 +27,7 @@ public class ForumSkriver {
         // -------------- fId  ------------------------------ 
         out.format(DIV, "ledetekst");
         out.format(DIV,"inn");
-        //Sjekk dette (hidden funker!) Ingen vits i at brukeren kan skrive inn dette
+        //Ingen vits i at brukeren kan skrive inn dette
         //Bruker auto increment, ikke nødvendig for bruker å kunne prøve å fylle inn noe her
         out.format(INP, "hidden", "fId", fId);
         out.println("</div>");

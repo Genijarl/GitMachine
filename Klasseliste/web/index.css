@@ -1,11 +1,6 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
 /* 
-    Created on : 23.okt.2018, 12:01:11
-    Author     : knutandreasaas
+    Last edited on : 26.okt.2018, 13:25:11
+    Author     : Knut Andreas Aas
 */
 
 body {
@@ -25,6 +20,5 @@ a{
 	font-size:25px;
 	padding:12px 59px;
 	text-decoration:none;
-    font-family: sans-serif;
-    
+        font-family: sans-serif;
 }

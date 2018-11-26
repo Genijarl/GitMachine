@@ -15,7 +15,9 @@ import Verktoy.DBVerktoy;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
-
+/**
+ * @author Jarl Andreassen // Team Machine
+ */
 @WebServlet("/uploadServlet")
 @MultipartConfig(maxFileSize = 16177215)
 public class UploadDelivery extends HttpServlet {

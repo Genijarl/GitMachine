@@ -1,7 +1,7 @@
 <%-- 
     Document   : ePost
     Created on : 23.okt.2018, 18:34:15
-    Author     : Øyvind & Vegard
+    Author     : Øyvind & Vegard // Team Machine
 --%>
 <%@page import="java.util.Properties" %> 
 <%@page import="javax.mail.*" %>

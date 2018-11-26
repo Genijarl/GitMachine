@@ -6,12 +6,15 @@ import java.sql.*;
 /**
  * @author Knut Andreas Aas // Team Machine
  */
-
 public class ForumVerktoy {
     Connection conn;
     Statement stmt;
     PreparedStatement insertInnlegg; 
      
+  /**
+   * @param out
+   * @param conn 
+   */
   public void skrivForum(PrintWriter out, Connection conn)
     { 
         String FORUM  = "<li><a href='ForumDetail?f_id=%s&f_title=%s&f_content=%s'> %s </a></li>\n"; 
@@ -24,13 +27,12 @@ public class ForumVerktoy {
                 out.println("<h3>Tema:</h3>");
                 
                 int rowCount = 0;
-                while(rset.next()) {   // Move the cursor to the next row, return false if no more row
+                while(rset.next()) {
                     try {
                         String fId = rset.getString("f_id");
                         String fTitle = rset.getString("f_title");
                         String fContent = rset.getString("f_content");
                         
-          
                     out.format(FORUM,fId, fTitle,fContent, fTitle);
                                       
                     ++rowCount;
@@ -50,7 +52,6 @@ public class ForumVerktoy {
    * @param fContent
    * @param out
    * @param conn 
-   * @author Knut Andreas Aas
    */
   public void NyttInnlegg(int fId, String fTitle, String fContent, PrintWriter out, Connection conn) {
         PreparedStatement NyttInnlegg; 
@@ -64,10 +65,9 @@ public class ForumVerktoy {
              NyttInnlegg.setString(1,fTitle);             
              NyttInnlegg.setString(2,fContent);  
              
-             //out.println(NyttInnlegg);
              NyttInnlegg.executeUpdate();     
              
-      } // end try     
+      }   
          catch (SQLException ex) {
                 out.println("Kan ikke opprette et nytt innlegg " +ex);
          }
@@ -80,7 +80,7 @@ public class ForumVerktoy {
      * @author Knut Andreas Aas
      */
     public void NyttInnlegg(String fTitleFix, String fContentFix, PrintWriter out, Connection conn) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

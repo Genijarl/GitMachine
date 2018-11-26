@@ -5,16 +5,18 @@ import java.io.PrintWriter;
 import java.sql.*; 
 
 /**
- *
- * @author Team Machine
+ * @author Jarl Andreassen & Sondre LømslandTeam Machine
  */
 public class StudentVerktoy {
-    Connection conn;        // Must be defined here as class variables, get their value in the login method
+    Connection conn;     
     Statement stmt;
     
     PreparedStatement insertStudent; 
     
-     
+  /**
+   * @param out
+   * @param conn 
+   */   
   public void skrivStudenter(PrintWriter out, Connection conn)
     { 
         String STUDENT  = "<li><a href='StudentDetail?list_no=%s&list_fname=%s&list_lname=%s'>%s %s %s</a></li>\n"; 
@@ -26,66 +28,71 @@ public class StudentVerktoy {
                 
                 ResultSet rset = getStudents.executeQuery();
  
-                // Step 4: Process the ResultSet by scrolling the cursor forward via next().
-                //  For each row, retrieve the contents of the cells with getXxx(columnName).
                 out.println("Studenter i klasselisten:" +"<br>");
                 int rowCount = 0;
-                while(rset.next()) {   // Move the cursor to the next row, return false if no more row
-                    try {
+                while(rset.next()) { 
+                    try {    
                     String listNo = rset.getString("list_no");
                     String listFname = rset.getString("list_fname");
                     String listLname = rset.getString("list_lname");
+                   
                     out.format(STUDENT,listNo, listFname,listLname, listNo, listLname,listFname);
                                       
                     ++rowCount;
                     } catch (SQLException exception) {
                         out.println("Unable to map row" + exception);
                     }
-                 }  // end while
-                 out.println("Totalt antall studenter = " + rowCount);
-                 
-                 
-                 
-         } // end try     
+                 } 
+                 out.println("<br></br>");
+                 out.println("Totalt antall studenter = " + rowCount);    
+         }     
          catch (SQLException ex) {
                 out.println("Ikke hentet fra DB " +ex);
          }
    }
-
   
+  /**
+   * @param listFname
+   * @param listLname
+   * @param out
+   * @param conn 
+   */
   public void newStudent(String listFname, String listLname, PrintWriter out, Connection conn) {
         PreparedStatement newStudent; 
-        out.println("En ny student ble lagt til! ");
+        out.println("Studenten "+ listFname + " "+ listLname + " ble lagt til! ");
          try {
              String ins ="insert into classlist.clist ( list_fname,list_lname)  values (?, ?)";
           
              newStudent = conn.prepareStatement(ins);
      
-            // newStudent.setInt(1,listNo);
              newStudent.setString(1,listFname);             
              newStudent.setString(2,listLname);  
                 
-             out.println(newStudent);
-             newStudent.executeUpdate();
-             
-      } // end try     
+             newStudent.executeUpdate();     
+             } 
          catch (SQLException ex) {
                 out.println("Ikke fått opprettet NY Student " +ex);
          }
   }
-
+  
+  /**
+   * @param listFname
+   * @param listLname
+   * @param out
+   * @param conn 
+   */
   public void deleteStudent(String listFname, String listLname, PrintWriter out, Connection conn) {
-      PreparedStatement deleteStudent;
-      out.println("Studenten ble slettet!");
-      try {
-          String ins = "DELETE FROM classlist.clist WHERE ( list_fname, list_lname) = (?, ?)";
+        PreparedStatement deleteStudent;
+        out.println("Studenten ble slettet!");
+        try {
+             String ins = "DELETE FROM classlist.clist WHERE ( list_fname, list_lname) = (?, ?)";
           
-          deleteStudent = conn.prepareStatement(ins);
+             deleteStudent = conn.prepareStatement(ins);
           
-           deleteStudent.setString(1,listFname);             
-           deleteStudent.setString(2,listLname);  
+             deleteStudent.setString(1,listFname);             
+             deleteStudent.setString(2,listLname);  
            
-           deleteStudent.executeUpdate();
+             deleteStudent.executeUpdate();
            
   } catch(SQLException ex) {
           out.println("Sletting av student feilet " + ex);

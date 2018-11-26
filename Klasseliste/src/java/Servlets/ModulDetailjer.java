@@ -10,9 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Verktoy.DBVerktoy;
 
+/**
+ * @author Knut Andreas Aas // Team Machine
+ */
 @WebServlet(name = "ModuleDetail", urlPatterns = {"/ModuleDetail"})
 public class ModulDetailjer extends HttpServlet {
-
+    
+    /**
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -42,17 +51,13 @@ public class ModulDetailjer extends HttpServlet {
             out.print("<br></br>");
             out.println("Evaluering: " + ("<br></br>") +mEvaluation);
                       
-            
-           // ModulVerktoy modulVerktoy = new ModulVerktoy();
             DBVerktoy dbVerktoy = new DBVerktoy();
             
             Connection conn; 
             conn = dbVerktoy.loggInn2();
             
-            //Brukes denne kommer alle modulene i modul beskrivelsen
-            /*ModulVerktoy.skrivModul(out,conn);*/
             out.println("<br></br>");            
-            out.println("<a href =\"hentModuler\"> Tilbake </a>");
+            //out.println("<a href =\"hentModuler\"> Tilbake </a>");
             out.println("<link href=\"les.css\" rel=\"stylesheet\" type=\"text/css\">");
             out.println("</body>");
             out.println("</html>");

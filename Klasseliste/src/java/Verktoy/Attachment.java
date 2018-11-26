@@ -1,17 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Verktoy;
 
 import java.sql.Blob;
 
 /**
- *
- * @author Jarl
+ * @author Jarl Andreassen // Team Machine
  */
 public class Attachment {
+   
     private int id;
     private String fileName;
     private Blob fileData;

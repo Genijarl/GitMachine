@@ -3,17 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/web/getFile.jsp</file>
-            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/src/java/Verktoy/ForumVerktoy.java</file>
-            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/src/java/Servlets/ForumLagre.java</file>
-            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/web/index.html</file>
-            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/web/utboks.jsp</file>
-            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/src/java/skrivere/ForumSkriver.java</file>
-            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/web/forum.html</file>
-            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/src/java/Servlets/HentForum.java</file>
-            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/src/java/Servlets/ForumDetail.java</file>
-            <file>file:/C:/Users/Jarl/Documents/NetBeansProjects/GitMachine/Klasseliste/web/index.css</file>
+            <file>file:/Users/knutandreasaas/NetBeansProjects/GitMachine/Klasseliste/web/innboks.jsp</file>
+            <file>file:/Users/knutandreasaas/NetBeansProjects/GitMachine/Klasseliste/src/java/skrivere/StudentSkriver.java</file>
+            <file>file:/Users/knutandreasaas/NetBeansProjects/GitMachine/Klasseliste/src/java/Servlets/ModulDetailjer.java</file>
+            <file>file:/Users/knutandreasaas/NetBeansProjects/GitMachine/Klasseliste/src/java/Servlets/HentStudenter.java</file>
+            <file>file:/Users/knutandreasaas/NetBeansProjects/GitMachine/Klasseliste/src/java/Verktoy/ModulVerktoy.java</file>
+            <file>file:/Users/knutandreasaas/NetBeansProjects/GitMachine/Klasseliste/src/java/Servlets/StudentDetail.java</file>
         </group>
     </open-files>
 </project-private>
