@@ -2,14 +2,12 @@ package Servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Verktoy.DBVerktoy;
-import Verktoy.StudentVerktoy;
+
 
 @WebServlet(name = "StudentDetail", urlPatterns = {"/StudentDetail"})
 public class StudentDetail extends HttpServlet {
@@ -22,7 +20,7 @@ public class StudentDetail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet StudentDetail</title>");            
+            out.println("<title>LES</title>");            
             out.println("</head>");
             out.println("<body>"); 
             
@@ -32,18 +30,14 @@ public class StudentDetail extends HttpServlet {
             
             out.println("<h1>Student detaljer</h1>");
          
-            out.println("Fornavn " + listFname + "Etternavn " + listLname);
+            out.println("Fornavn: " + listFname);
+            out.println("<br></br>");
+            out.println("Etternavn: " + listLname);
+            out.println("<br></br>");
+            out.println("Fag: IS-109");
+            out.println("<br></br>");
                       
-            
-            StudentVerktoy StudentVerktoy = new StudentVerktoy();
-            DBVerktoy dbVerktoy = new DBVerktoy();
-            
-            Connection conn; 
-            conn = dbVerktoy.loggInn2();
-            
-            //Brukes denne kommer alle modulene i modul beskrivelsen
-            /*ModulVerktoy.skrivModul(out,conn);*/
-                        
+            out.println("<a href =\"hentStudenter\"> Tilbake </a>");
             out.println("</body>");
             out.println("</html>");
         }

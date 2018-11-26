@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Send ny Gmail</title>
+        <title>LES</title>
     </head>
     <body onLoad="displayResult()"> 
         
@@ -99,7 +99,7 @@
             public class Epost {
                 String URL = "jdbc:mysql://localhost:3306/classlist";
                 String USERNAME = "root";
-                String PASSWORD = "root";
+                String PASSWORD = "passord12345";
 
 
                 Connection connection = null;

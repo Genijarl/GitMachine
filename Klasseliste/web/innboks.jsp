@@ -22,7 +22,7 @@
             public class Innboks {
                 String URL = "jdbc:mysql://localhost:3306/classlist";
                 String USERNAME = "root";
-                String PASSWORD = "root";
+                String PASSWORD = "passord12345";
 
 
                 Connection connection = null;

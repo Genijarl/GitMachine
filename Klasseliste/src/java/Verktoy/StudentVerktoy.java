@@ -23,7 +23,6 @@ public class StudentVerktoy {
          
          try {
                 getStudents = conn.prepareStatement("select * from clist");
-               /* getStudents.setString(1,"list_fname");*/
                 
                 ResultSet rset = getStudents.executeQuery();
  
@@ -36,7 +35,6 @@ public class StudentVerktoy {
                     String listNo = rset.getString("list_no");
                     String listFname = rset.getString("list_fname");
                     String listLname = rset.getString("list_lname");
-                    /*out.println(listNo + " , " + listFname + ", " + listLname +"<br>");*/
                     out.format(STUDENT,listNo, listFname,listLname, listNo, listLname,listFname);
                                       
                     ++rowCount;
@@ -46,7 +44,7 @@ public class StudentVerktoy {
                  }  // end while
                  out.println("Totalt antall studenter = " + rowCount);
                  
-                  //out.format(STUDENT,0,"","", -1,"new","new");
+                 
                  
          } // end try     
          catch (SQLException ex) {

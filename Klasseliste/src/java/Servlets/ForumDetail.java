@@ -10,17 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Verktoy.DBVerktoy;
 
+/**
+ * @author Knut Andreas Aas // Team Machine
+ */
 @WebServlet(name = "ForumDetail", urlPatterns = {"/ForumDetail"})
-
 public class ForumDetail extends HttpServlet {
     
-    /**
-     * 
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException 
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");

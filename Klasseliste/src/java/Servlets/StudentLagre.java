@@ -11,10 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import Verktoy.DBVerktoy;
 import Verktoy.StudentVerktoy;
 import skrivere.StudentSkriver;
-
 /**
- *
- * @author Knut Andreas Aas
+ * @author Team Machine
  */
 @WebServlet(name = "StudentLagre", urlPatterns = {"/StudentLagre"})
 public class StudentLagre extends HttpServlet {
@@ -34,7 +32,7 @@ public class StudentLagre extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Ny student</title>");            
+            out.println("<title>LES</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<h1> Legg til eller oppdater en student til Klasseliste </h1>");
@@ -76,7 +74,7 @@ public class StudentLagre extends HttpServlet {
                     
             studentSkriver.skrivStudentForm(listNo, listFname, listLname, out); 
            
-            
+            out.println("<a href =\"student.html\"> Tilbake </a>");
             out.println("</body>");
             out.println("</html>");
         }

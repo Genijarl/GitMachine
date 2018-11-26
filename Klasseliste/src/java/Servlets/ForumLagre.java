@@ -16,22 +16,11 @@ import skrivere.ForumSkriver;
 
 
 /**
- *
- * @author Knut Andreas Aas
+ * @author Knut Andreas Aas // Team Machine
  */
 @WebServlet(name = "ForumLagre", urlPatterns = {"/ForumLagre"})
 public class ForumLagre extends HttpServlet {
     
-    
-    /**Jeg valgte å gjøre det sånn fordi...*/
-    
-    /**
-     * 
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException 
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");

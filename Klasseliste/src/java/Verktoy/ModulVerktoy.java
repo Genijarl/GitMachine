@@ -68,7 +68,6 @@ public class ModulVerktoy {
              newModule.setString(4,mAssignment);
              newModule.setString(5,mEvaluation);
              
-             //out.println(newModule);
              newModule.executeUpdate();
              
       } // end try     

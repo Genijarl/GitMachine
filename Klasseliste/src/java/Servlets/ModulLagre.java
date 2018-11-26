@@ -16,8 +16,7 @@ import skrivere.ModulSkriver;
 
 
 /**
- *
- * @author Knut Andreas Aas
+ * @author Knut Andreas Aas // Team Machine
  */
 @WebServlet(name = "ModulLagre", urlPatterns = {"/ModulLagre"})
 public class ModulLagre extends HttpServlet {

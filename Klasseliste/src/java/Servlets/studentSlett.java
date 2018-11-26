@@ -41,7 +41,7 @@ public class studentSlett extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Slett student</title>");            
+            out.println("<title>LES</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Fjern student fra klasseliste </h1>");
@@ -82,7 +82,7 @@ public class studentSlett extends HttpServlet {
                     
             studentSkriver.slettStudentForm(listNo, listFname, listLname, out); 
            
-            
+            out.println("<a href =\"student.html\"> Tilbake </a>");
             out.println("</body>");
             out.println("</html>");
         }

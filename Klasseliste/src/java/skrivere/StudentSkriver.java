@@ -2,6 +2,9 @@ package skrivere;
 
 import java.io.PrintWriter;
 
+/**
+ * @author Jarl Andreassen // Team Machine
+ */
 public class StudentSkriver {
     
  public void skrivStudentForm(int listNo, String listFname, String listLname, PrintWriter out)

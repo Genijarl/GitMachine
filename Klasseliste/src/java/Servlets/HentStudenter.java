@@ -35,7 +35,7 @@ public class HentStudenter extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Klasseliste IS-109/110</title>");            
+            out.println("<title>LES</title>");            
             out.println("</head>");
             
             out.println("<body>");
@@ -48,7 +48,8 @@ public class HentStudenter extends HttpServlet {
             conn = dbVerktoy.loggInn2();
             
             studentVerktoy.skrivStudenter(out,conn);
-            
+            out.println("<br></br>");
+            out.println("<a href =\"Klasseliste.jsp\"> Tilbake </a>");
             out.println("</body>");
             out.println("</html>");
         }

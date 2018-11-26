@@ -2,6 +2,9 @@ package skrivere;
 
 import java.io.PrintWriter;
 
+/**
+ * @author Knut Andreas Aas // Team Machine
+ */
 public class ForumSkriver {
     
     /**

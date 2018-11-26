@@ -12,12 +12,6 @@ public class ForumVerktoy {
     Statement stmt;
     PreparedStatement insertInnlegg; 
      
-  /**
-   * 
-   * @param out
-   * @param conn 
-   * @author Knut Andreas Aas
-   */ 
   public void skrivForum(PrintWriter out, Connection conn)
     { 
         String FORUM  = "<li><a href='ForumDetail?f_id=%s&f_title=%s&f_content=%s'> %s </a></li>\n"; 

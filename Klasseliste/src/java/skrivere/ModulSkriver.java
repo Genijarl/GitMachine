@@ -2,7 +2,10 @@ package skrivere;
 
 import java.io.PrintWriter;
 
-public class ModulSkriver {
+/**
+ * @author Knut Andreas Aas // Team Machine
+ */
+    public class ModulSkriver {
     
     public void skrivModul(int mId, String mName, String mDescription, String mResources, String mAssignment, String mEvaluation, PrintWriter out) {
         
