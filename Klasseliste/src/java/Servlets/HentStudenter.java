@@ -25,11 +25,12 @@ public class HentStudenter extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("meta charset=ISO-8859-1");
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+            out.println("<meta charset=\"UTF-8\">");
             out.println("<title>LES</title>");            
             out.println("</head>");
             out.println("<body>");
@@ -43,7 +44,6 @@ public class HentStudenter extends HttpServlet {
             
             studentVerktoy.skrivStudenter(out,conn);
             out.println("<br></br>");
-            //out.println("<a href =\"Klasseliste.jsp\"> Tilbake </a>");
             out.println("</body>");
             out.println("</html>");
         }

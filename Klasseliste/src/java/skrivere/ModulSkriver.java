@@ -22,7 +22,8 @@ import java.io.PrintWriter;
        
         String DIV ="<div class = '%s'>";
         String FORMs  = "<form action = '%s'  method = POST>";  
-        String INP = "<input type='%s' & name='%s' & value='%s'>" +"<br>"; 
+        String INP = "<input type='%s' & name='%s' & value='%s' & input style='%s'>" +"<br>"; 
+        String INPD = "<textarea & name='%s' & value='%s' & input style='%s'></textarea>" +"<br>"; 
         String INPSUB = "<input type='%s' & name='%s' & value='%s'>" +"  ";
         
         out.format(FORMs, "ModulLagre"); 
@@ -32,7 +33,7 @@ import java.io.PrintWriter;
         out.format(DIV,"inn");
         //Ingen vits i at brukeren kan skrive inn dette
         //Bruker auto increment, ikke nødvendig for bruker å kunne prøve å fylle inn noe her
-        out.format(INP, "hidden", "mId", mId);
+        out.format(INP, "hidden", "mId", mId, "width:500px;");
         out.println("</div>");
 
         // -------------- mName  ------------------------------ 
@@ -40,7 +41,7 @@ import java.io.PrintWriter;
         out.println ("Modul navn: " +"</div>");
         
         out.format(DIV, "inn");
-        out.format(INP, "text", "mName", mName);
+        out.format(INP, "text", "mName", mName, "width:500px;");
         out.println("</div>"); 
        
         // ------------- mDescription  ------------------------------- 
@@ -48,7 +49,7 @@ import java.io.PrintWriter;
         out.println ("Beskrivelse: " +"</div>");
         
         out.format(DIV, "inn");
-        out.format(INP, "text", "mDescription", mDescription);
+        out.format (INPD, "mDescription", mDescription, "width:500px;height:200px;");
         out.println("</div>"); 
         
         // ------------- mResources  ------------------------------- 
@@ -56,7 +57,7 @@ import java.io.PrintWriter;
         out.println ("Ressurser: " +"</div>");
         
         out.format(DIV, "inn");
-        out.format(INP, "text", "mResources", mResources);
+        out.format(INPD, "mResources", mResources, "width:500px;height;100px;");
         out.println("</div>"); 
         
         // ------------- mAssignment  ------------------------------- 
@@ -64,7 +65,7 @@ import java.io.PrintWriter;
         out.println ("Oppgave: " +"</div>");
         
         out.format(DIV, "inn");
-        out.format(INP, "text", "mAssignment", mAssignment);
+        out.format(INPD, "mAssignment", mAssignment, "width:500px;height;100px;");
         out.println("</div>"); 
         
         // ------------- mEvaluation ------------------------------- 
@@ -72,7 +73,7 @@ import java.io.PrintWriter;
         out.println ("Evaluering: " +"</div>");
         
         out.format(DIV, "inn");
-        out.format(INP, "text", "mEvaluation", mEvaluation);
+        out.format(INP, "text", "mEvaluation", mEvaluation, "width:500px;");
         out.println("</div>"); 
         
         // -------------- Operatorer -------------------------------

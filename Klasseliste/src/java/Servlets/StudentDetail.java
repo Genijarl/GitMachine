@@ -27,12 +27,14 @@ public class StudentDetail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+            out.println("<meta charset=\"UTF-8\">");
             out.println("<title>LES</title>");            
             out.println("</head>");
             out.println("<body>"); 
             
             String listFname= request.getParameter("list_fname");
             String listLname = request.getParameter("list_lname");
+            String listEmail = request.getParameter("list_email");
            
             out.println("<h1>Student detaljer</h1>");
          
@@ -40,10 +42,11 @@ public class StudentDetail extends HttpServlet {
             out.println("<br></br>");
             out.println("Etternavn: " + listLname);
             out.println("<br></br>");
+            out.println("E-mail: " + listEmail);
+            out.println("<br></br>");
             out.println("Fag: IS-109");
             out.println("<br></br>");
-                      
-            //out.println("<a href =\"hentStudenter\"> Tilbake </a>");
+
             out.println("</body>");
             out.println("</html>");
         }

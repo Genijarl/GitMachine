@@ -39,6 +39,7 @@ public class StudentLagre extends HttpServlet {
             
             String listFname; 
             String listLname; 
+            String listEmail;
             String listNoS;
             String valg="";
               
@@ -49,11 +50,13 @@ public class StudentLagre extends HttpServlet {
             {   listNo =0;
                 listFname = "fornavn";
                 listLname = "etternavn";
+                listEmail = "e-mail";
             }
             else
             {   listNo = Integer.parseInt(listNoS);
                 listFname = request.getParameter("listFname");
                 listLname = request.getParameter("listLname");
+                listEmail = request.getParameter("listEmail");
                 valg = request.getParameter("valg");
             }     
                
@@ -67,9 +70,9 @@ public class StudentLagre extends HttpServlet {
             
             if (valg.contains("Legg til"))
                    
-                    studentVerktoy.newStudent(listFname, listLname, out, conn);
+                    studentVerktoy.newStudent(listFname, listLname, listEmail, out, conn);
                     
-            studentSkriver.skrivStudentForm(listNo, listFname, listLname, out); 
+            studentSkriver.skrivStudentForm(listNo, listFname, listLname, listEmail, out); 
            
             //out.println("<a href =\"student.html\"> Tilbake </a>");
             out.println("</body>");

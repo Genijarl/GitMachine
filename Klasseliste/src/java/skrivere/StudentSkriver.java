@@ -11,11 +11,12 @@ public class StudentSkriver {
   * @param listNo
   * @param listFname
   * @param listLname
+  * @param listEmail
   * @param out 
   */   
- public void skrivStudentForm(int listNo, String listFname, String listLname, PrintWriter out)
+ public void skrivStudentForm(int listNo, String listFname, String listLname, String listEmail, PrintWriter out)
     {
-        
+                
         skrivHtmlHeader(out, "");
         
         String DIV ="<div class = '%s'>";
@@ -23,7 +24,7 @@ public class StudentSkriver {
         String INP = "<input type='%s' & name='%s' & value='%s'>" +"<br>"; 
         String INPSUB = "<input type='%s' & name='%s' & value='%s'>" +"  ";
         
-        out.format(FORMs, "StudentLagre", "studentSlett"); 
+        out.format(FORMs, "StudentLagre"); 
                
         // -------------- listNo  ------------------------------ 
         out.format(DIV, "ledetekst");
@@ -47,6 +48,15 @@ public class StudentSkriver {
         out.format(DIV, "inn");
         out.format(INP, "text", "listLname", listLname);
         out.println("</div>"); 
+        
+        // ------------- listEmail ------------------------------- 
+        out.format(DIV, "ledetekst");
+        out.println ("E-mail: " +"</div>");
+        
+        out.format(DIV, "inn");
+        out.format(INP, "email", "listEmail", listEmail);
+        out.println("</div>"); 
+        
         
         // -------------- Operatorer -------------------------------
         out.format(DIV, "inn");
