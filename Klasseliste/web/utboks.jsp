@@ -3,6 +3,7 @@
     Created on : 15.nov.2018, 13:55:37
     Author     : Øyvind
 --%>
+<%@page import="Verktoy.DBVerktoy"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.util.Date" %>
 <% Class.forName("com.mysql.jdbc.Driver"); %>
@@ -25,57 +26,17 @@
                 </div> 
             
         <h1>Sendte Mail</h1>
-        <%!
+        <%
             //Oppretter kommunikasjon med databasen classlist
-            public class Utboks {
-                String URL = "jdbc:mysql://localhost:3306/classlist";
-                String USERNAME = "root";
-                String PASSWORD = "passord12345";
+            DBVerktoy dbVerktoy = new DBVerktoy();
+                         try (Connection conn = dbVerktoy.loggInn2()){
 
-
-                Connection connection = null;
-                PreparedStatement seUtboks = null;
-                ResultSet resultSet = null;
-
-                public Utboks() {
-                
-                //Henter attributter fra tabellen outgoingEmail i databasen som skal brukes
-                try {
-
-                    connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-
-                   seUtboks = connection.prepareStatement(
-                    "SELECT mottaker_id, epost_adr, epost_emne, epost_melding, email_sendt"
+                    String sqlString = "SELECT mottaker_id, epost_adr, epost_emne, epost_melding, email_sendt"
                     + " FROM outgoingEmail"
                     + " GROUP BY mottaker_id"
-                    + " ORDER BY mottaker_id DESC");
-
-                } catch (SQLException e){
-                e.printStackTrace();
-                }
-
-             }
-
-                public ResultSet getUtboks(){
-                
-                try {
-                    resultSet = seUtboks.executeQuery();
-                }
-                catch
-                (SQLException e){
-                e.printStackTrace();
-                }
-
-                return resultSet;
-
-           }
-}
-            %> 
-            <%
-                //Koden lager et objekt av utboksen.
-                //Her henter den det som står i tabellen outgoingEmail i SQL.
-                Utboks utboks = new Utboks();
-                ResultSet utboksen = utboks.getUtboks();
+                    + " ORDER BY mottaker_id DESC";
+                    Statement myStatement = conn.createStatement();
+                    ResultSet rs=myStatement.executeQuery(sqlString);
 %>
 <table border="1">
     <tbody>
@@ -90,14 +51,15 @@
         <% 
             //While loopen kjører slik at den henter alle meldinger i utboksen
             //Når den ikke finner fler meldinger så stopper den.
-    while (utboksen.next()) { %>
+    while (rs.next()) { %>
         <tr>
-            <td><%= utboksen.getString("mottaker_id") %></td>
-            <td><%= utboksen.getString("epost_adr") %></td>
-            <td><%= utboksen.getString("epost_emne") %></td>
-            <td><%= utboksen.getString("epost_melding") %></td>
-            <td><%= utboksen.getString("email_sendt") %></td>
+            <td><%= rs.getString("mottaker_id") %></td>
+            <td><%= rs.getString("epost_adr") %></td>
+            <td><%= rs.getString("epost_emne") %></td>
+            <td><%= rs.getString("epost_melding") %></td>
+            <td><%= rs.getString("email_sendt") %></td>
         </tr>
         <% } %>
+        <%  }catch(Exception e){e.printStackTrace();}    %>
     </tbody>
 </table>

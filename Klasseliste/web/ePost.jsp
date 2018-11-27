@@ -3,6 +3,7 @@
     Created on : 23.okt.2018, 18:34:15
     Author     : Øyvind & Vegard // Team Machine
 --%>
+<%@page import="Verktoy.DBVerktoy"%>
 <%@page import="java.util.Properties" %> 
 <%@page import="javax.mail.*" %>
 <%@page import="javax.mail.internet.*" %>
@@ -97,54 +98,45 @@
         
                  <%!
             public class Epost {
-                String URL = "jdbc:mysql://localhost:3306/classlist";
-                String USERNAME = "root";
-                String PASSWORD = "passord12345";
+               
+                public Epost(String to, String subject, String message, Timestamp timeStamp) {
 
+                 DBVerktoy dbVerktoy = new DBVerktoy();
+                 try (Connection conn = dbVerktoy.loggInn2()){
+    
+                String sql = "INSERT INTO outgoingEmail (epost_adr, epost_emne, epost_melding, email_sendt) VALUES (?, ?, ?, ?)";
+                PreparedStatement insertEpost = conn.prepareStatement(sql);
 
-                Connection connection = null;
-                PreparedStatement insertEpost = null;
-                ResultSet resultSet = null;
-
-                public Epost() {
-
-                try {
-
-                    connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-
-                    insertEpost = connection.prepareStatement(
-                    "INSERT INTO outgoingEmail (epost_adr, epost_emne, epost_melding, email_sendt)"
-                    + " VALUES (?, ?, ?, ?)");
-
-                } catch (SQLException e){
-                e.printStackTrace();
-                }
-
-             }
-
-             public int setEpost (String to, String subject, String message, Timestamp timeStamp){
-
-                int result = 0;
-
-                try {
-                
                 insertEpost.setString(1, to);
                 insertEpost.setString(2, subject);
                 insertEpost.setString(3, message);
                 insertEpost.setTimestamp(4, timeStamp);
-                result = insertEpost.executeUpdate();
+
+                int row = insertEpost.executeUpdate();
+                if (row > 0)
+            {
+                System.out.println("Eposten har blitt sendt");
+                
+                conn.close();
+                    }
+            else
+            {
+                System.out.println("Kunne ikke sende epost");
+                
+                conn.close();
+            }
 
             }   catch(SQLException e){
                 e.printStackTrace();
             }
 
-                return result;
+              
 }
 }
             %>
         
         <%
-            int result = 0;
+           
                 
                 if (request.getParameter("send") != null){
                 String eMail = new String();
@@ -166,8 +158,8 @@
                 Date date = new Date();
                 Timestamp timeStamp = new Timestamp(date.getTime());
                 
-                Epost epost = new Epost();
-                result = epost.setEpost(eMail, newSubject, newMessage, timeStamp);
+                Epost epost = new Epost(eMail, newSubject, newMessage, timeStamp);
+               
                 } 
         %>
         

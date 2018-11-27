@@ -10,24 +10,6 @@
         <res-auth> Container</res-auth>
     </resource-ref>
     
- <servlet>
-        <servlet-name>UploadFileController</servlet-name>
-        <servlet-class>controller.UploadFileController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UploadFileController</servlet-name>
-        <url-pattern>/UploadFileController</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-  <servlet-name>fileView</servlet-name>
-  <servlet-class>Servlets.fileView</servlet-class>
-</servlet>
-<servlet-mapping>
-  <servlet-name>fileView</servlet-name>
-  <url-pattern>/fileView</url-pattern>
-</servlet-mapping>
-
     <session-config>
 <!-- Sessions will be automatically terminated (i.e. logged out) after 30 minutes of inactivity -->
 <session-timeout> 30 </session-timeout>

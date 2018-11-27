@@ -11,6 +11,7 @@
         <div>
             <a href ="uploader.html"> Lever Modul </a>
             <a href ="getFile.jsp"> Se leverte moduler </a>
+            <a href ="seProgresjon.jsp"> Se min progresjon </a>
         </div>
         
         <!--Knapp som fører til en liste over alle modulene (HentModuler.java)-->
