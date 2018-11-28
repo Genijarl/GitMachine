@@ -1,7 +1,5 @@
 package Servlets;
 
-import Verktoy.DBVerktoy;
-import Verktoy.ForumVerktoy;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -10,15 +8,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import Verktoy.DBVerktoy;
+import Verktoy.ForumVerktoy;
+import static java.nio.charset.StandardCharsets.ISO_8859_1;
+import static java.nio.charset.StandardCharsets.UTF_8;
+import skrivere.ForumKommentarSkriver;
 /**
- * @author Knut Andreas Aas // Team Machine
+ * @author Jarl Andreassen // Team Machine
  */
-@WebServlet(name = "ForumDetail", urlPatterns = {"/ForumDetail"})
-public class ForumDetail extends HttpServlet {
-
-    
-    
+@WebServlet(name = "ForumKommentarLagre", urlPatterns = {"/ForumKommentarLagre"})
+public class ForumKommentarLagre extends HttpServlet {
     /**
      * @param request
      * @param response
@@ -28,7 +27,6 @@ public class ForumDetail extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -36,55 +34,69 @@ public class ForumDetail extends HttpServlet {
             out.println("<title>LES</title>");            
             out.println("</head>");
             out.println("<body>");
+            out.println("<h1> Legg til en kommentar </h1>");
             
-            String fId  = request.getParameter("f_id");
-          
-            String fTitle = request.getParameter("f_title");
-            String fContent = request.getParameter("f_content");
+            String fkTitle; 
+            String fkContent; 
+            String fkIds;
+            String fIds;
+            String valg="";
             
-            DBVerktoy dbVerktoy = new DBVerktoy();
+            fkIds = request.getParameter("fkId");
+            fIds = request.getParameter("fId");
+
             
-            try {
-            Connection conn; 
-            
-            conn = dbVerktoy.loggInn2();
-            
-            ForumVerktoy forumVerktoy = new ForumVerktoy();
-            
-   
-            out.println("<h1>Innleggsdetaljer</h1>");
-            out.println("Innlegg:" + fId);
-            out.print("<br></br>");
-            out.println("Emne   : "  + fTitle);
-            out.print("<br></br>");
-            out.println("Melding: " + ("<br></br>")+ fContent);
-            out.print("<br></br>");  
-                        
-           /* if (fkTitle == null && fkContent == null){  
-                out.println("Ingen kommentarer enda" + ("<br></br>"));    
-            } 
-            else{ */
-           
-                out.println("Kommentar: " + ("<br></br>"));
-                forumVerktoy.skrivForumKommentar(fId, out, conn);
+            int fkId;
+            int fId;
+ 
+            if (fkIds ==null && fIds ==null)
+            {   fkId =0;
+                fId =0;
+                fkTitle = "Tittel";
+                fkContent = "Innhold";
                 
-            conn.close();
+            }
+            else
+            {   fkId = Integer.parseInt(fkIds);
+                fId = Integer.parseInt(fIds);
+                fkTitle = request.getParameter("fkTitle");
+                fkContent = request.getParameter("fkContent");
+                valg = request.getParameter("valg");
+            }     
+             
+            //---------------Konverterer bytes til tekst------------------------
+            byte [] ptext = fkTitle.getBytes (ISO_8859_1);
+            String fkTitleFix = new String (ptext,UTF_8); 
+            
+            byte [] ptext2 = fkContent.getBytes (ISO_8859_1);
+            String fkContentFix = new String (ptext2,UTF_8); 
+            //------------------------------------------------------------------
+            
+            //---------------Skrivere & Verktøy--------------------------------- 
+            ForumKommentarSkriver ForumKommentarSkriver  = new ForumKommentarSkriver(); 
+            ForumVerktoy ForumVerktoy = new ForumVerktoy();  
+            DBVerktoy dbVerktoy = new DBVerktoy();
+            //------------------------------------------------------------------
+           
+            try (Connection conn = dbVerktoy.loggInn2()){
+                
+                if (valg.contains("Publiser"))
+                    ForumVerktoy.NyKommentar(fkTitleFix, fkContentFix, fId, out, conn);
+                ForumKommentarSkriver.skrivForumKommentar(fkId, fkTitle, fkContent, out);      
+                
+                conn.close();
             }
             catch (Exception ex){
-                out.println("Noe gikk galt med å lagre modulen" + ex);
+                out.println("Noe gikk galt med å poste innlegget " + ex);
             }
             
-      
-            out.println("<br></br>"); 
-            out.println("<a href =\"ForumKommentarLagre\"> Legg til kommentar </a>");
-            out.println("<br></br>"); 
-        
-            //out.println("<a href =\"hentForum\"> Tilbake </a>");
+            //out.println("<a href =\"forum.html\"> Tilbake </a>");
             out.println("<link href=\"les.css\" rel=\"stylesheet\" type=\"text/css\">");
             out.println("</body>");
             out.println("</html>");
         }
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

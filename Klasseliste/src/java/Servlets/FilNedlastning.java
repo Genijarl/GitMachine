@@ -50,7 +50,7 @@ public class FilNedlastning extends HttpServlet {
             String fileName = attachment.getFileName();
             System.out.println("File name: " + fileName);
             
-            String contentType = this.getServletContext().getMimeType(fileName);
+            String contentType = this.getServletContext().getMimeType("file_uploaded");
                 System.out.println("Content type: " + contentType);
                 
                 response.setHeader("Content-Type", contentType);
