@@ -67,7 +67,7 @@ public class FilNedlastning extends HttpServlet {
                     response.getOutputStream().write(bytes, 0, bytesRead);
                 }
                 is.close();
-                
+                conn.close();
             } catch (Exception e) {
                 throw new ServletException(e);
             }

@@ -38,12 +38,16 @@ public class HentForum extends HttpServlet {
                  
             ForumVerktoy ForumVerktoy = new ForumVerktoy();
             DBVerktoy dbVerktoy = new DBVerktoy();
-            
+            try {
             Connection conn; 
             conn = dbVerktoy.loggInn2();
             
             ForumVerktoy.skrivForum(out,conn);
             
+            conn.close();
+            }catch (Exception ex){
+                out.println("Noe gikk galt" + ex);
+            }
             out.println("<br></br>");
             //out.println("<a href =\"forum.html\"> Tilbake </a>");
             out.println("<link href=\"les.css\" rel=\"stylesheet\" type=\"text/css\">");

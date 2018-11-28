@@ -38,11 +38,16 @@ public class HentStudenter extends HttpServlet {
                  
             StudentVerktoy studentVerktoy = new StudentVerktoy();
             DBVerktoy dbVerktoy = new DBVerktoy();
-            
+            try {
             Connection conn; 
             conn = dbVerktoy.loggInn2();
             
             studentVerktoy.skrivStudenter(out,conn);
+            
+            conn.close();
+            }catch (Exception ex){
+                out.println("Noe gikk galt" + ex);
+            }
             out.println("<br></br>");
             out.println("</body>");
             out.println("</html>");

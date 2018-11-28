@@ -4,6 +4,8 @@ import Verktoy.DBVerktoy;
 import Verktoy.StudentVerktoy;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.nio.charset.StandardCharsets.ISO_8859_1;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import java.sql.Connection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -56,21 +58,33 @@ public class SlettStudent extends HttpServlet {
                 listLname = request.getParameter("listLname");
                 valg = request.getParameter("valg");
             }
+            
+             //---------------Konverterer ISO charset til UTF-8 charset---------
+            byte [] ptext = listFname.getBytes (ISO_8859_1);
+            String listFnameFix = new String (ptext,UTF_8); 
+            
+            byte [] ptext2 = listLname.getBytes (ISO_8859_1);
+            String listLnameFix = new String (ptext2,UTF_8); 
+            //------------------------------------------------------------------
         
             StudentSkriver studentSkriver  = new StudentSkriver(); 
             StudentVerktoy studentVerktoy = new StudentVerktoy();  
         
             DBVerktoy dbVerktoy = new DBVerktoy();
-            Connection conn; 
             
+            try {
+            Connection conn; 
             conn = dbVerktoy.loggInn2();
             
             if (valg.contains("Fjern"))
                    
-                    studentVerktoy.deleteStudent(listFname, listLname, out, conn);
-                    
-            studentSkriver.slettStudentForm(listNo, listFname, listLname, out); 
-           
+                    studentVerktoy.deleteStudent(listFnameFix, listLnameFix, out, conn);
+            studentSkriver.slettStudentForm(listNo, listFnameFix, listLnameFix, out); 
+            
+           conn.close();
+            }catch (Exception ex){
+                out.println("Noe gikk galt" + ex);
+            }
             //out.println("<a href =\"student.html\"> Tilbake </a>");
             out.println("</body>");
             out.println("</html>");

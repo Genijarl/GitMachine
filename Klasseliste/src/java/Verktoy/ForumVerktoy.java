@@ -26,7 +26,6 @@ public class ForumVerktoy {
                 ResultSet rset = getForums.executeQuery();
                 out.println("<h3>Tema:</h3>");
                 
-                int rowCount = 0;
                 while(rset.next()) {
                     try {
                         String fId = rset.getString("f_id");
@@ -34,12 +33,14 @@ public class ForumVerktoy {
                         String fContent = rset.getString("f_content");
                         
                     out.format(FORUM,fId, fTitle,fContent, fTitle);
-                                      
-                    ++rowCount;
                     } catch (SQLException exception) {
                         out.println("Unable to map row" + exception);
                     }
+                   
                  }
+                rset.close();
+                getForums.close();
+                conn.close();
          }     
         catch (SQLException ex) {
                 out.println("Ikke hentet fra database " +ex);

@@ -59,8 +59,9 @@ public class ModulSlett extends HttpServlet {
             ModulVerktoy modulVerktoy = new ModulVerktoy();  
         
             DBVerktoy dbVerktoy = new DBVerktoy();
-            Connection conn; 
             
+            try {
+            Connection conn; 
             conn = dbVerktoy.loggInn2();
             
             if (valg.contains("Fjern"))
@@ -68,7 +69,11 @@ public class ModulSlett extends HttpServlet {
                     modulVerktoy.deleteModul(mName, out, conn);
                     
             modulSkriver.slettModulForm(mId, mName, out); 
-           
+            
+           conn.close();
+            }catch (Exception ex){
+                out.println("Noe gikk galt" + ex);
+            }
             //out.println("<a href =\"moduler.html\"> Tilbake </a>");
             out.println("</body>");
             out.println("</html>");

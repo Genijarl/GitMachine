@@ -40,12 +40,18 @@ public class StudentVerktoy {
                     out.format(STUDENT,listNo, listFname, listLname, listEmail, listNo, listLname, listFname);
                                       
                     ++rowCount;
+                    
+                    
                     } catch (SQLException exception) {
                         out.println("Unable to map row" + exception);
                     }
                  } 
                  out.println("<br></br>");
-                 out.println("Totalt antall studenter = " + rowCount);    
+                 out.println("Totalt antall studenter = " + rowCount); 
+                 
+                 rset.close();
+                 getStudents.close();
+                 conn.close();
          }     
          catch (SQLException ex) {
                 out.println("Ikke hentet fra DB " +ex);

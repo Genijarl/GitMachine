@@ -67,7 +67,7 @@ public class ModulLagre extends HttpServlet {
                 valg = request.getParameter("valg");
             }  
             
-            //---------------Konverterer bytes til tekst------------------------  
+            //---------------Konverterer ISO charset til UTF-8 charset (æ ø å)--
             byte [] ptext = mName.getBytes (ISO_8859_1);
             String mNameFix = new String (ptext,UTF_8); 
          
@@ -95,8 +95,9 @@ public class ModulLagre extends HttpServlet {
                 if (valg.contains("Legg til"))
                     modulVerktoy.newModule(mNameFix, mDescriptionFix, mResourcesFix, mAssignmentFix, mEvaluationFix, out, conn);
                 modulSkriver.skrivModul(mId, mName, mDescription, mResources, mAssignment, mEvaluation, out); 
+                
+                conn.close();
             }
-            
             catch (Exception ex){
                 out.println("Noe gikk galt med å lagre modulen" + ex);
             }

@@ -49,7 +49,9 @@
             <td><a href="ePost.jsp" ><h3> Svar <h3></a></td>
         </tr>
         
-        <% } %>
+        <% } rs.close();
+             conn.close();
+             myStatement.close();%>
         <%  }catch(Exception e){e.printStackTrace();}    %>
     </tbody>
 </table>

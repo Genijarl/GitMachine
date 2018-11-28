@@ -59,7 +59,11 @@
             <td><%= rs.getString("epost_melding") %></td>
             <td><%= rs.getString("email_sendt") %></td>
         </tr>
-        <% } %>
+        <% }
+            rs.close();
+            myStatement.close();
+            conn.close();
+        %>
         <%  }catch(Exception e){e.printStackTrace();}    %>
     </tbody>
 </table>

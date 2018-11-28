@@ -38,12 +38,16 @@ public class HentModuler extends HttpServlet {
                  
             ModulVerktoy modulVerktoy = new ModulVerktoy();
             DBVerktoy dbVerktoy = new DBVerktoy();
-            
+            try {
             Connection conn; 
             conn = dbVerktoy.loggInn2();
             
             modulVerktoy.skrivModul(out,conn);
             
+            conn.close();
+            }catch (Exception ex){
+                out.println("Noe gikk galt" + ex);
+            }
             out.println("<br></br>");
             // out.println("<a href =\"moduler.html\"> Tilbake </a>");
             out.println("<link href=\"les.css\" rel=\"stylesheet\" type=\"text/css\">");

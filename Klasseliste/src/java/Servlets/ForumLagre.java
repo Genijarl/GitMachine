@@ -77,7 +77,9 @@ public class ForumLagre extends HttpServlet {
                 
                 if (valg.contains("Publiser"))
                     ForumVerktoy.NyttInnlegg(fId, fTitleFix, fContentFix, out, conn);
-                ForumSkriver.skrivForum(fId, fTitle, fContent, out);         
+                ForumSkriver.skrivForum(fId, fTitle, fContent, out);  
+                
+                conn.close();
             }
             
             catch (Exception ex){

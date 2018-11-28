@@ -85,16 +85,16 @@ public class StudentLagre extends HttpServlet {
                     studentVerktoy.newStudent(listFnameFix, listLnameFix, listEmailFix, out, conn);
             studentSkriver.skrivStudentForm(listNo, listFname, listLname, listEmail, out); 
             
+            conn.close();
+            }catch (Exception ex){
+                out.println("Noe gikk galt med å legge til student" + ex);
             }
-            
-            catch (Exception ex){
-                out.println("Noe gikk galt med å lagre studenten" + ex);
+
                 
             //out.println("<a href =\"student.html\"> Tilbake </a>");
             out.println("</body>");
             out.println("</html>");
         }
-    }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -28,7 +28,6 @@ public class ModulVerktoy {
 
                 out.println("Moduler:" +"<br>");
                 
-                int rowCount = 0;
                 while(rset.next()) {
                     try {
                         String mId = rset.getString("m_id");
@@ -38,17 +37,21 @@ public class ModulVerktoy {
                         String mAssignment = rset.getString("m_assignment");
                         String mEvaluation = rset.getString("m_evaluation");
           
-                    out.format(MODULE,mId, mName,mDescription, mResources, mAssignment, mEvaluation, mName);
-                                      
-                    ++rowCount;
+                    out.format(MODULE,mId, mName,mDescription, mResources, mAssignment, mEvaluation, mName);        
+                   
                     } catch (SQLException exception) {
                         out.println("Unable to map row" + exception);
                     }
+                    
                  }
+                getModules.close();
+                rset.close();
+                conn.close();
          }     
         catch (SQLException ex) {
                 out.println("Ikke hentet fra database " +ex);
          }
+         
    }
   
   /**
@@ -75,7 +78,10 @@ public class ModulVerktoy {
              newModule.setString(4,mAssignment);
              newModule.setString(5,mEvaluation);
              
-             newModule.executeUpdate();      
+             newModule.executeUpdate(); 
+             
+             newModule.close();
+             conn.close();
         }    
         catch (SQLException ex) {
                out.println("Can`t create new module " +ex);
@@ -96,6 +102,8 @@ public class ModulVerktoy {
            
              deleteModul.executeUpdate();
            
+             deleteModul.close();
+             conn.close();
   } catch(SQLException ex) {
           out.println("Sletting av modul feilet " + ex);
           }
