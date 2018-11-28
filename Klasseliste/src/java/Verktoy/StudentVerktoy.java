@@ -86,7 +86,7 @@ public class StudentVerktoy {
    */
   public void deleteStudent(String listFname, String listLname, PrintWriter out, Connection conn) {
         PreparedStatement deleteStudent;
-        out.println("Studenten ble slettet!");
+        
         try {
              String ins = "DELETE FROM classlist.clist WHERE ( list_fname, list_lname) = (?, ?)";
           
@@ -96,7 +96,7 @@ public class StudentVerktoy {
              deleteStudent.setString(2,listLname);  
            
              deleteStudent.executeUpdate();
-           
+             out.println("Studenten "+ listFname + " "+ listLname + " ble slettet! ");
   } catch(SQLException ex) {
           out.println("Sletting av student feilet " + ex);
           }

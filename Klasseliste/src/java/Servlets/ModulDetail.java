@@ -1,24 +1,20 @@
 package Servlets;
 
-import Verktoy.DBVerktoy;
-import Verktoy.StudentVerktoy;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import skrivere.StudentSkriver;
+
 
 /**
- *
- * @author Sondre Lømsland // Team Machine
+ * @author Knut Andreas Aas // Team Machine
  */
-@WebServlet(name = "studentSlett", urlPatterns = {"/studentSlett"})
-public class studentSlett extends HttpServlet {
-
+@WebServlet(name = "ModuleDetail", urlPatterns = {"/ModuleDetail"})
+public class ModulDetail extends HttpServlet {
+    
     /**
      * @param request
      * @param response
@@ -28,50 +24,37 @@ public class studentSlett extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+            out.println("<meta charset=\"UTF-8\">");
             out.println("<title>LES</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Fjern student fra klasseliste </h1>");
-        
-            String listFname; 
-            String listLname;     
-            String listNoS;
-            String valg="";
-        
-            listNoS = request.getParameter("listNo");
-        
-            int listNo;
-            if (listNoS ==null)
-            {   listNo =0;
-                listFname = "fornavn";
-                listLname = "etternavn";
-            } 
-            else
-            {   listNo = Integer.parseInt(listNoS);
-                listFname = request.getParameter("listFname");
-                listLname = request.getParameter("listLname");
-                valg = request.getParameter("valg");
-            }
-        
-            StudentSkriver studentSkriver  = new StudentSkriver(); 
-            StudentVerktoy studentVerktoy = new StudentVerktoy();  
-        
-            DBVerktoy dbVerktoy = new DBVerktoy();
-            Connection conn; 
             
-            conn = dbVerktoy.loggInn2();
+            String mName  = request.getParameter("m_name");
+            String mDescription = request.getParameter("m_description");
+            String mResources = request.getParameter("m_resources");
+            String mAssignment = request.getParameter("m_assignment");
+            String mEvaluation = request.getParameter("m_evaluation");
             
-            if (valg.contains("Fjern"))
-                   
-                    studentVerktoy.deleteStudent(listFname, listLname, out, conn);
-                    
-            studentSkriver.slettStudentForm(listNo, listFname, listLname, out); 
-           
-            //out.println("<a href =\"student.html\"> Tilbake </a>");
+            out.println("<h1>Modul detaljer</h1>");
+            out.println(mName);
+            out.print("<br></br>");
+            out.println("Beskrivelse: " + ("<br></br>") + mDescription);
+            out.print("<br></br>");
+            out.println("Ressurser: " +("<br></br>")+ mResources);
+            out.print("<br></br>");
+            out.println("Oppgave: " + ("<br></br>") +mAssignment);
+            out.print("<br></br>");
+            out.println("Evaluering: " + ("<br></br>") +mEvaluation);
+                      
+            
+            out.println("<br></br>");            
+            //out.println("<a href =\"hentModuler\"> Tilbake </a>");
+            out.println("<link href=\"les.css\" rel=\"stylesheet\" type=\"text/css\">");
             out.println("</body>");
             out.println("</html>");
         }

@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Jarl Andreassen // Team Machine
  */
 @WebServlet(name = "fileView", urlPatterns = {"/fileView"})
-public class fileView extends HttpServlet {
+public class FilNedlastning extends HttpServlet {
 
     /**
      * @param request

@@ -52,7 +52,6 @@ public class ModulVerktoy {
    }
   
   /**
-   * @param mId
    * @param mName
    * @param mDescription
    * @param mResources
@@ -61,7 +60,7 @@ public class ModulVerktoy {
    * @param out
    * @param conn 
    */
-  public void newModule(int mId, String mName,String mDescription,String mResources,String mAssignment,String mEvaluation, PrintWriter out, Connection conn) {
+  public void newModule(String mName,String mDescription,String mResources,String mAssignment,String mEvaluation, PrintWriter out, Connection conn) {
         PreparedStatement newModule; 
         out.println("En ny modul har blitt lagt til!");
         
@@ -82,4 +81,24 @@ public class ModulVerktoy {
                out.println("Can`t create new module " +ex);
         }
   }
+
+
+  public void deleteModul(String mName, PrintWriter out, Connection conn) {
+        PreparedStatement deleteModul;
+        out.println("Modulen ble slettet!!");
+        try {
+             String ins = "DELETE FROM classlist.modulelist WHERE ( m_name) = (?)";
+          
+             deleteModul = conn.prepareStatement(ins);
+          
+             deleteModul.setString(1, mName);             
+             
+           
+             deleteModul.executeUpdate();
+           
+  } catch(SQLException ex) {
+          out.println("Sletting av modul feilet " + ex);
+          }
+  }
 }
+  

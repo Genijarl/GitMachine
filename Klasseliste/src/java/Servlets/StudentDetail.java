@@ -27,7 +27,6 @@ public class StudentDetail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<meta charset=\"UTF-8\">");
             out.println("<title>LES</title>");            
             out.println("</head>");
             out.println("<body>"); 

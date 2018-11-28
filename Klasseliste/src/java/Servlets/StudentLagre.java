@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Verktoy.DBVerktoy;
 import Verktoy.StudentVerktoy;
+import static java.nio.charset.StandardCharsets.ISO_8859_1;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import skrivere.StudentSkriver;
 /**
  * @author Team Machine
@@ -32,6 +34,7 @@ public class StudentLagre extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+            out.println("<meta charset=\"UTF-8\">");
             out.println("<title>LES</title>");            
             out.println("</head>");
             out.println("<body>");
@@ -60,26 +63,39 @@ public class StudentLagre extends HttpServlet {
                 valg = request.getParameter("valg");
             }     
                
+            //---------------Konverterer bytes til tekst------------------------  
+            byte [] ptext = listFname.getBytes (ISO_8859_1);
+            String listFnameFix = new String (ptext,UTF_8); 
+            
+            byte [] ptext2 = listLname.getBytes (ISO_8859_1);
+            String listLnameFix = new String (ptext2,UTF_8); 
+            
+            byte [] ptext3 = listEmail.getBytes (ISO_8859_1);
+            String listEmailFix = new String (ptext3,UTF_8); 
+            
+            //----------------Skrivere & Verktøy--------------------------------
             StudentSkriver studentSkriver  = new StudentSkriver(); 
             StudentVerktoy studentVerktoy = new StudentVerktoy();  
             
             DBVerktoy dbVerktoy = new DBVerktoy();
-            Connection conn; 
-            
-            conn = dbVerktoy.loggInn2();
-            
-            if (valg.contains("Legg til"))
+             //-----------------------------------------------------------------
+            try (Connection conn = dbVerktoy.loggInn2()){
+             if (valg.contains("Legg til"))
                    
-                    studentVerktoy.newStudent(listFname, listLname, listEmail, out, conn);
-                    
+                    studentVerktoy.newStudent(listFnameFix, listLnameFix, listEmailFix, out, conn);
             studentSkriver.skrivStudentForm(listNo, listFname, listLname, listEmail, out); 
-           
+            
+            }
+            
+            catch (Exception ex){
+                out.println("Noe gikk galt med å lagre studenten" + ex);
+                
             //out.println("<a href =\"student.html\"> Tilbake </a>");
             out.println("</body>");
             out.println("</html>");
         }
     }
-    
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -119,5 +135,5 @@ public class StudentLagre extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
+

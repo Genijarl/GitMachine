@@ -45,11 +45,7 @@ public class ForumDetail extends HttpServlet {
             out.print("<br></br>");
             out.println("Melding: " + ("<br></br>")+ fContent);
             out.print("<br></br>");
-           
-            DBVerktoy dbVerktoy = new DBVerktoy();
-            Connection conn; 
-            conn = dbVerktoy.loggInn2();
-            
+
             out.println("<br></br>");    
             //out.println("<a href =\"hentForum\"> Tilbake </a>");
             out.println("<link href=\"les.css\" rel=\"stylesheet\" type=\"text/css\">");

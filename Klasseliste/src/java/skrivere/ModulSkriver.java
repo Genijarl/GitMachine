@@ -87,6 +87,45 @@ import java.io.PrintWriter;
         out.println("</div>");  
     }
     
+    public void slettModulForm(int mId, String mName, PrintWriter out)
+    {
+        skrivHtmlHeader(out, "");
+
+        String DIV ="<div class = '%s'>";
+        String FORMs  = "<form action = '%s'  method = POST>";  
+        String INP = "<input type='%s' & name='%s' & value='%s'>" +"<br>"; 
+        String INPSUB = "<input type='%s' & name='%s' & value='%s'>" +"  ";
+        
+        out.format(FORMs, "modulSlett"); 
+               
+        // -------------- listNo  ------------------------------ 
+        out.format(DIV, "ledetekst");
+        out.format(DIV,"inn");
+        //Sjekk dette (hidden funker!) Ingen vits i at brukeren kan skrive inn dette (auto increment)
+        out.format(INP, "hidden", "mId", mId);
+        out.println("</div>");
+
+        // -------------- listFname  ------------------------------ 
+        out.format(DIV, "ledetekst");
+        out.println ("Navn: " +"</div>");
+        
+        out.format(DIV, "inn");
+        out.format(INP, "text", "mName", mName);
+        out.println("</div>"); 
+           
+        // ------------- listLname  ------------------------------- 
+        
+        // -------------- Operatorer ------------------------------- 
+        out.format(DIV, "inn");
+        out.format(INPSUB, "Submit", "valg", "Fjern");   
+
+        out.println("</div>");
+        out.println(" <br>");        
+        out.println("</form>");  
+        out.println("");  
+        out.println("</div>");  
+    }
+    
     /**
      * @param out
      * @param tittel 

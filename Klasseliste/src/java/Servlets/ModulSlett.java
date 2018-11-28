@@ -1,5 +1,7 @@
 package Servlets;
 
+import Verktoy.DBVerktoy;
+import Verktoy.ModulVerktoy;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -8,18 +10,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Verktoy.DBVerktoy;
-import Verktoy.ModulVerktoy;
-import static java.nio.charset.StandardCharsets.ISO_8859_1;
-import static java.nio.charset.StandardCharsets.UTF_8;
 import skrivere.ModulSkriver;
 
 /**
- * @author Knut Andreas Aas // Team Machine
+ *
+ * @author Sondre Lømsland // Team Machine
  */
-@WebServlet(name = "ModulLagre", urlPatterns = {"/ModulLagre"})
-public class ModulLagre extends HttpServlet {
-    
+@WebServlet(name = "modulSlett", urlPatterns = {"/modulSlett"})
+public class ModulSlett extends HttpServlet {
+
     /**
      * @param request
      * @param response
@@ -36,79 +35,45 @@ public class ModulLagre extends HttpServlet {
             out.println("<title>LES</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1> Opprett en modul</h1>");
-            
+            out.println("<h1>Fjern en modul </h1>");
+        
             String mName;
-            String mDescription; 
-            String mResources;
-            String mAssignment;
-            String mEvaluation;
             String mIds;
             String valg="";
-                       
+        
             mIds = request.getParameter("mId");
-                       
+        
             int mId;
-            if (mIds == null)
+            if (mIds ==null)
             {   mId =0;
-                mName = "Navn på modul";
-                mDescription = "Beskriv modulen";
-                mResources = "Ressurser";
-                mAssignment = "Oppgavetekst";
-                mEvaluation = "Evaluering";
-            }
+                mName = "Navn";
+                
+            } 
             else
             {   mId = Integer.parseInt(mIds);
                 mName = request.getParameter("mName");
-                mDescription = request.getParameter("mDescription");
-                mResources = request.getParameter("mResources");
-                mAssignment = request.getParameter("mAssignment");
-                mEvaluation = request.getParameter("mEvaluation");
                 valg = request.getParameter("valg");
-            }  
-            
-            //---------------Konverterer bytes til tekst------------------------  
-            byte [] ptext = mName.getBytes (ISO_8859_1);
-            String mNameFix = new String (ptext,UTF_8); 
-         
-            byte [] ptext2 = mDescription.getBytes (ISO_8859_1);
-            String mDescriptionFix = new String (ptext2,UTF_8); 
-            
-            byte [] ptext3 = mResources.getBytes (ISO_8859_1);
-            String mResourcesFix = new String (ptext3,UTF_8); 
-            
-            byte [] ptext4 = mAssignment.getBytes (ISO_8859_1);
-            String mAssignmentFix = new String (ptext4,UTF_8);
-            
-            byte [] ptext5 = mEvaluation.getBytes (ISO_8859_1);
-            String mEvaluationFix = new String (ptext5,UTF_8);
-            //------------------------------------------------------------------
-            
-            //---------------Skrivere & Verktøy--------------------------------- 
+            }
+        
             ModulSkriver modulSkriver  = new ModulSkriver(); 
             ModulVerktoy modulVerktoy = new ModulVerktoy();  
+        
             DBVerktoy dbVerktoy = new DBVerktoy();
-            //------------------------------------------------------------------
+            Connection conn; 
             
-            try (Connection conn = dbVerktoy.loggInn2()){
-                
-                if (valg.contains("Legg til"))
-                    modulVerktoy.newModule(mNameFix, mDescriptionFix, mResourcesFix, mAssignmentFix, mEvaluationFix, out, conn);
-                modulSkriver.skrivModul(mId, mName, mDescription, mResources, mAssignment, mEvaluation, out); 
-            }
+            conn = dbVerktoy.loggInn2();
             
-            catch (Exception ex){
-                out.println("Noe gikk galt med å lagre modulen" + ex);
-            }
-     
-            //out.println("<a href =\"hentModuler\"> Tilbake </a>");
-            out.println("<link href=\"les.css\" rel=\"stylesheet\" type=\"text/css\">");
+            if (valg.contains("Fjern"))
+                   
+                    modulVerktoy.deleteModul(mName, out, conn);
+                    
+            modulSkriver.slettModulForm(mId, mName, out); 
+           
+            //out.println("<a href =\"moduler.html\"> Tilbake </a>");
             out.println("</body>");
             out.println("</html>");
         }
     }
-    
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
